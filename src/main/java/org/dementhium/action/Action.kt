@@ -6,6 +6,12 @@ import kotlin.properties.Delegates
 
 abstract class Action(cycles: Int) : Tickable(cycles) {
 
+    companion object {
+        val NoAction = object: Action(-1) {
+            override fun execute() { }
+        }
+    }
+
     protected var mob: Mob by Delegates.notNull()
 
     fun setEntity(mob: Mob) { this.mob = mob }
