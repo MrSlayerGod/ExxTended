@@ -10,6 +10,8 @@ import org.dementhium.model.mask.Animation;
 import org.dementhium.model.player.Player;
 import org.dementhium.model.player.Skills;
 import org.dementhium.util.Misc;
+import org.jetbrains.annotations.NotNull;
+
 /**
  *
  * @author 'Mystic Flow <Steven@rune-server.org>
@@ -55,6 +57,16 @@ public final class Woodcutting extends HarvestingAction {
 		@Override
 		public int getRequiredLevel() {
 			return level;
+		}
+
+		@Override
+		public int getRequiredSkill() {
+			return Skills.WOODCUTTING;
+		}
+
+		@Override
+		public int getToolId() {
+			return this.id;
 		}
 	}
 
@@ -125,7 +137,7 @@ public final class Woodcutting extends HarvestingAction {
 	}
 
 	@Override
-	public Item getReward() {
+	public Item getHarvestReward() {
 		return new Item(tree.log, 1);
 	}
 	
@@ -168,7 +180,7 @@ public final class Woodcutting extends HarvestingAction {
 	}
 
 	@Override
-	public HarvestObject getGameObject() {
+	public HarvestObject getHarvestObject() {
 		return tree;
 	}
 
