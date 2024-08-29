@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<list>
+	<circle>
+		<name>Hello</name>
+		<swX>-1</swX>
+		<swY>-1</swY>
+		<nwX>-1</nwX>
+		<nwY>-1</nwY>
+		<radius>17</radius>
+		<centerX>3165</centerX>
+		<centerY>3489</centerY>
+		<isPvpZone>false</isPvpZone>
+		<isPlusOne>false</isPlusOne>
+		<canTele>true</canTele>
+	</circle>
+	<rectangle>
+		<name>Edgeville</name>
+		<swX>3038</swX>
+		<swY>3524</swY>
+		<nwX>3138</nwX>
+		<nwY>3571</nwY>
+		<radius>-1</radius>
+		<centerX>3093</centerX>
+		<centerY>3493</centerY>
+		<isPvpZone>true</isPvpZone>
+		<isPlusOne>false</isPlusOne>
+		<canTele>true</canTele>
+	</rectangle>
+	
+	<rectangle>
+		<name>Wilderness</name>
+		<swX>3038</swX>
+		<swY>3524</swY>
+		<nwX>3400</nwX>
+		<nwY>3975</nwY>
+		<radius>-1</radius>
+		<centerX>-1</centerX>
+		<centerY>-1</centerY>
+		<isPvpZone>true</isPvpZone>
+		<isPlusOne>false</isPlusOne>
+		<canTele>true</canTele>
+	</rectangle>
+	
+	<rectangle>
+		<name>Nex</name>
+		<swX>2910</swX>
+		<swY>5188</swY>
+		<nwX>2941</nwX>
+		<nwY>5220</nwY>
+		<radius>-1</radius>
+		<centerX>-1</centerX>
+		<centerY>-1</centerY>
+		<isPvpZone>false</isPvpZone>
+		<isPlusOne>false</isPlusOne>
+		<canTele>false</canTele>
+	</rectangle>
+	
+</list>
