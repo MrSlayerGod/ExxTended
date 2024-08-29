@@ -1451,6 +1451,10 @@ public final class Player extends Mob {
 		return settings.getSpecialAmount();
 	}
 
+	public void setSpecialAmount(int newAmount) {
+		setSpecialAmount(newAmount, true);
+	}
+
 	public void setOnline(boolean isOnline) {
 		this.isOnline = isOnline;
 	}

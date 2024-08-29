@@ -46,7 +46,7 @@ public abstract class HarvestingAction extends Action {
 			return;
 		}
 		HarvestTool tool = getTool();
-		Player player = mob.getPlayer();
+		Player player = getMob().getPlayer();
 		int level = player.getSkills().getLevel(getSkill());
 		if(++animationCycles >= 3 && tool != null) {
 			player.animate(tool.getAnimation());
