@@ -46,4 +46,10 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(11)
+    compilerOptions {
+        freeCompilerArgs = listOf(
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xjvm-default=all",
+        )
+    }
 }
