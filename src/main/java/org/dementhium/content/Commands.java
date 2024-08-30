@@ -729,10 +729,6 @@ public final class Commands {
 		if (command[0].equalsIgnoreCase("closeinter")) {
 			ActionSender.closeInter(player);
 		}
-		if (command[0].equalsIgnoreCase("areatest")) {
-			RectangularArea area = (RectangularArea) World.getWorld().getAreaManager().getAreaByName("edgeville");
-			area.spawnItems();
-		}
 		if (command[0].equalsIgnoreCase("pricecheck")) {
 			PriceCheck pc = new PriceCheck(player);
 			pc.addItem(0);
