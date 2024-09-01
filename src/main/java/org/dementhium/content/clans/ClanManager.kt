@@ -7,9 +7,6 @@ import org.dementhium.net.ActionSender
 import org.dementhium.util.Misc
 import org.dementhium.util.Tickable
 
-/**
- * @author 'Mystic Flow
- */
 class ClanManager {
 
     val clans: MutableMap<String, Clan> = try {
