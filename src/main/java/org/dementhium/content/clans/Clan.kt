@@ -1,10 +1,11 @@
 package org.dementhium.content.clans
 
+import org.dementhium.content.clans.Clan.Companion.NO_CLAN
 import org.dementhium.model.player.Player
 import org.dementhium.net.ActionSender
 import org.dementhium.util.Misc
 
-class Clan(val owner: String, var name: String) {
+class Clan @JvmOverloads constructor (val owner: String = "", var name: String = "") {
     var joinReq: Int = 0
     var talkReq: Int = 0
     var kickReq: Int = 7
@@ -85,19 +86,21 @@ class Clan(val owner: String, var name: String) {
         members.remove(player)
     }
 
-    fun isValidClan() = this != NO_CLAN
-
-    fun isInvalidClan() = this == NO_CLAN
-
-    fun whenValidClan(block: (Clan) -> Unit) = apply {
-        if (isValidClan()) block(this)
-    }
-
-    fun whenInvalidClan(block: (Clan) -> Unit)= apply {
-        if (isInvalidClan()) block(this)
-    }
-
     companion object {
         val NO_CLAN = Clan("", "Chat disabled")
     }
+}
+
+
+
+fun Clan?.isValidClan() = this != null && this != NO_CLAN
+
+fun Clan?.isInvalidClan() = this == null || this == NO_CLAN
+
+fun Clan?.whenValidClan(block: (Clan) -> Unit) = apply {
+    if (isValidClan()) block(this as Clan)
+}
+
+fun Clan?.whenInvalidClan(block: (Clan?) -> Unit)= apply {
+    if (isInvalidClan()) block(this)
 }
