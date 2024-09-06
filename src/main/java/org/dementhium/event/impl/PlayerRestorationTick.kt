@@ -6,48 +6,57 @@ import org.dementhium.model.player.Skills
 import org.dementhium.net.ActionSender
 import org.dementhium.util.direction
 
-object PlayerRestoration {
-    const val specialTimer = 50
-    const val runEnergyTimer =  2
-    const val levelNormalizationTimer = 90
-    const val passiveHealTimer = 10
-    const val maxSpecialAmount = 1_000
-    const val maxRunEnergy = 100
-    const val specialRestoreMax = 100
-    const val runEnergyRestoration = 1
-    const val levelNormalizationAmount = 1
-    const val healAmount = 1
+data class PlayerRestorationConfig(
+    val specialTimer: Int = 50,
+    val runEnergyTimer: Int =  2,
+    val levelNormalizationTimer: Int = 90,
+    val passiveHealTimer: Int = 10,
+    val maxSpecialAmount: Int = 1_000,
+    val maxRunEnergy: Int = 100,
+    val specialRestoreMax: Int = 100,
+    val runEnergyRestoration: Int = 1,
+    val levelNormalizationAmount: Int = 1,
+    val healAmount: Int = 1,
+) {
+    companion object {
+        val Default = PlayerRestorationConfig()
+    }
 }
 
-class PlayerRestorationTick(private val player: Player) : Tickable(1) {
+class PlayerRestorationTick(
+    private val player: Player,
+    private val restorationConfig: PlayerRestorationConfig
+) : Tickable(1) {
 
-    private var specialTimer = PlayerRestoration.specialTimer
-    private var runEnergyTimer = PlayerRestoration.runEnergyTimer
-    private var levelNormalizationTimer = PlayerRestoration.levelNormalizationTimer
-    private var passiveHealTimer = PlayerRestoration.passiveHealTimer
+    constructor(player: Player): this(player, PlayerRestorationConfig.Default)
+
+    private var specialTimer = restorationConfig.specialTimer
+    private var runEnergyTimer = restorationConfig.runEnergyTimer
+    private var levelNormalizationTimer = restorationConfig.levelNormalizationTimer
+    private var passiveHealTimer = restorationConfig.passiveHealTimer
 
     override fun execute() {
         val isOnline = player.isOnline
         if (!isOnline) return stop()
-        if (player.specialAmount < PlayerRestoration.maxSpecialAmount) {
+        if (player.specialAmount < restorationConfig.maxSpecialAmount) {
             if (specialTimer-- == 0) {
-                specialTimer = PlayerRestoration.specialTimer
-                player.specialAmount = (player.specialAmount + PlayerRestoration.specialRestoreMax)
-                    .coerceAtMost(PlayerRestoration.maxSpecialAmount)
+                specialTimer = restorationConfig.specialTimer
+                player.specialAmount = (player.specialAmount + restorationConfig.specialRestoreMax)
+                    .coerceAtMost(restorationConfig.maxSpecialAmount)
             }
         }
-        if (player.walkingQueue.runEnergy < PlayerRestoration.maxRunEnergy) {
+        if (player.walkingQueue.runEnergy < restorationConfig.maxRunEnergy) {
             if (runEnergyTimer-- == 0) {
-                runEnergyTimer = PlayerRestoration.runEnergyTimer
+                runEnergyTimer = restorationConfig.runEnergyTimer
                 if (!player.walkingQueue.isRunningMoving) {
-                    player.walkingQueue.runEnergy += PlayerRestoration.runEnergyRestoration
+                    player.walkingQueue.runEnergy += restorationConfig.runEnergyRestoration
                     ActionSender.sendRunEnergy(player)
                 }
             }
         }
 
         if (levelNormalizationTimer-- == 0) {
-            levelNormalizationTimer = PlayerRestoration.levelNormalizationTimer
+            levelNormalizationTimer = restorationConfig.levelNormalizationTimer
             val differentRestorations = intArrayOf(Skills.HITPOINTS, Skills.PRAYER, Skills.SUMMONING)
             for (i in 0 until Skills.SKILL_COUNT) {
                 if (i in differentRestorations) {
@@ -55,15 +64,17 @@ class PlayerRestorationTick(private val player: Player) : Tickable(1) {
                 }
                 var currentLevel = player.skills.getLevel(i)
                 val level = player.skills.getLevelForXp(i)
-                currentLevel += PlayerRestoration.levelNormalizationAmount * direction(currentLevel < level)
+                if (currentLevel == level) return
+                val direction = direction(currentLevel < level)
+                currentLevel = restorationConfig.levelNormalizationAmount * direction
                 player.skills.setLevel(i, currentLevel)
             }
         }
 
         if (passiveHealTimer-- == 0) {
-            passiveHealTimer = PlayerRestoration.passiveHealTimer
+            passiveHealTimer = restorationConfig.passiveHealTimer
             if (player.skills.hitPoints < player.skills.getLevelForXp(Skills.HITPOINTS) * 10) {
-                player.skills.heal(PlayerRestoration.healAmount)
+                player.skills.heal(restorationConfig.healAmount)
             }
         }
 
