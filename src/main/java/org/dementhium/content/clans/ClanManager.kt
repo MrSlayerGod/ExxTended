@@ -5,7 +5,7 @@ import org.dementhium.model.World
 import org.dementhium.model.player.Player
 import org.dementhium.net.ActionSender
 import org.dementhium.util.Misc
-import org.dementhium.util.Tickable
+import org.dementhium.util.tickable
 
 class ClanManager {
 
@@ -38,7 +38,7 @@ class ClanManager {
         p.sendMessage("Attempting to join channel...")
         val clan = getClan(p.username)
         World.getWorld().submit(
-            Tickable {
+            tickable {
                 getClan(p.username).whenInvalidClan {
                     p.sendMessage("The channel you tried to join does not exist.")
                     this.stop()

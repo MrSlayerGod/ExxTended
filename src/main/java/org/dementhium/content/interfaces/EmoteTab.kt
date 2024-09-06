@@ -1,12 +1,11 @@
 package org.dementhium.content.interfaces
 
-import org.dementhium.event.Tickable
 import org.dementhium.model.World
 import org.dementhium.model.mask.Animation
 import org.dementhium.model.mask.Graphics
 import org.dementhium.model.player.Equipment.SLOT_CAPE
 import org.dementhium.model.player.Player
-import org.dementhium.util.Tickable
+import org.dementhium.util.tickable
 
 class SkillcapeEmote(
     val skillcapeId: Int,
@@ -82,6 +81,7 @@ object EmoteTab {
 
     private val DungeoneeringCapes = intArrayOf(15706, 18508, 18509, 19709, 19710)
 
+    @JvmStatic
     fun handleButton(p: Player, buttonId: Int, buttonId2: Int, buttonId3: Int) {
         if (buttonId !in 0..48) { return }
         if (buttonId == 39) {
@@ -90,13 +90,13 @@ object EmoteTab {
                 p.animate(Animation.create(13190))
                 p.graphics(Graphics.create(2442))
                 val rand = (Math.random() * (2 + 1)).toInt()
-                World.getWorld().submit(Tickable(2) {
+                World.getWorld().submit(tickable(2) {
                     p.appearence.npcType = (11227 + rand).toShort()
                     p.mask.isApperanceUpdate = true
                     p.animate(Animation.create(13192 + rand))
                     this.stop()
                 })
-                World.getWorld().submit(Tickable(7) {
+                World.getWorld().submit(tickable(7) {
                     p.appearence.npcType = (-1).toShort()
                     p.mask.isApperanceUpdate = true
                     this.stop()
@@ -105,14 +105,14 @@ object EmoteTab {
         } else if (buttonId == 46) {
             p.animate(Animation.create(10994))
             p.graphics(Graphics.create(189))
-            World.getWorld().submit(Tickable(1) {
+            World.getWorld().submit(tickable(1) {
                 p.animate(Animation.create(10996))
                 p.appearence.npcType = 8499.toShort()
                 p.mask.isApperanceUpdate = true
                 this.stop()
 
             })
-            World.getWorld().submit(Tickable(8) {
+            World.getWorld().submit(tickable(8) {
                 p.animate(Animation.create(10995))
                 p.graphics(Graphics.create(189))
                 p.appearence.npcType = (-1).toShort()
