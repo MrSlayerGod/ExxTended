@@ -6,7 +6,7 @@ import org.dementhium.identifiers.IdentifierManager;
 import org.dementhium.model.Location;
 import org.dementhium.model.Mob;
 import org.dementhium.model.World;
-import org.dementhium.model.player.Skills;
+import org.dementhium.model.player.skills.Skills;
 import org.dementhium.net.ActionSender;
 import org.dementhium.util.Misc;
 

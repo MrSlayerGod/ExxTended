@@ -2,9 +2,9 @@ package org.dementhium.event.impl
 
 import org.dementhium.event.Tickable
 import org.dementhium.model.player.Player
-import org.dementhium.model.player.Skills
+import org.dementhium.model.player.skills.Skills
+import org.dementhium.model.player.skills.SkillId
 import org.dementhium.net.ActionSender
-import org.dementhium.util.direction
 
 data class PlayerRestorationConfig(
     val specialTimer: Int = 50,
@@ -57,23 +57,19 @@ class PlayerRestorationTick(
 
         if (levelNormalizationTimer-- == 0) {
             levelNormalizationTimer = restorationConfig.levelNormalizationTimer
-            val differentRestorations = intArrayOf(Skills.HITPOINTS, Skills.PRAYER, Skills.SUMMONING)
             for (i in 0 until Skills.SKILL_COUNT) {
-                if (i in differentRestorations) {
-                    continue
+                val skillId = SkillId.entries[i]
+                val skill = player.skills.getSkill(skillId)
+                if (skill.currentLevel == skill.maxLevel) continue
+                player.skills.normalizeLevel(skillId, restorationConfig.levelNormalizationAmount) {
+                    skill.currentLevel < skill.maxLevel
                 }
-                var currentLevel = player.skills.getLevel(i)
-                val level = player.skills.getLevelForXp(i)
-                if (currentLevel == level) return
-                val direction = direction(currentLevel < level)
-                currentLevel = restorationConfig.levelNormalizationAmount * direction
-                player.skills.setLevel(i, currentLevel)
             }
         }
 
         if (passiveHealTimer-- == 0) {
             passiveHealTimer = restorationConfig.passiveHealTimer
-            if (player.skills.hitPoints < player.skills.getLevelForXp(Skills.HITPOINTS) * 10) {
+            if (player.skills.hitPoints < player.skills.maxHitpoints) {
                 player.skills.heal(restorationConfig.healAmount)
             }
         }

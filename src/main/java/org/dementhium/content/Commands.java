@@ -1,8 +1,6 @@
 package org.dementhium.content;
 
 import org.dementhium.RS2Server;
-import org.dementhium.content.areas.Area;
-import org.dementhium.content.areas.impl.RectangularArea;
 import org.dementhium.event.Event;
 import org.dementhium.model.World;
 import org.dementhium.model.Item;
@@ -13,16 +11,12 @@ import org.dementhium.model.npc.impl.summoning.BeastOfBurden;
 import org.dementhium.model.npc.impl.summoning.Familiar;
 import org.dementhium.model.npc.impl.summoning.SteelTitan;
 import org.dementhium.model.player.Player;
-import org.dementhium.model.player.Skills;
+import org.dementhium.model.player.skills.Skills;
 import org.dementhium.net.ActionSender;
 import org.dementhium.util.Misc;
-import org.dementhium.model.Location;
 import org.dementhium.event.Tickable;
 import org.dementhium.content.misc.ValidItems;
-import org.dementhium.model.ProjectileManager;
-import org.dementhium.mysql.Vote;
 import org.dementhium.util.Constants;
-import org.dementhium.util.InputHandler;
 
 /**
  * 

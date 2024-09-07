@@ -13,7 +13,7 @@ import org.dementhium.model.combat.Combat.FightType;
 import org.dementhium.model.player.Bonuses;
 import org.dementhium.model.player.Equipment;
 import org.dementhium.model.player.Player;
-import org.dementhium.model.player.Skills;
+import org.dementhium.model.player.skills.Skills;
 import org.dementhium.net.ActionSender;
 import org.dementhium.model.GroundItemManager;
 import org.dementhium.util.Misc;

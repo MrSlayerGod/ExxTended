@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.sql.SQLException;
 
 
 import org.dementhium.content.skills.Prayer;
@@ -32,15 +31,13 @@ import org.dementhium.model.mask.Hits.Hit;
 import org.dementhium.model.mask.Hits.HitType;
 import org.dementhium.model.ProjectileManager;
 import org.dementhium.model.npc.impl.summoning.BeastOfBurden;
+import org.dementhium.model.player.skills.Skills;
 import org.dementhium.net.ActionSender;
 import org.dementhium.net.GameSession;
 import org.dementhium.task.impl.MessageExecutionTask;
 import org.dementhium.util.BufferUtils;
 import org.dementhium.util.Misc;
 import org.dementhium.util.Constants;
-import org.dementhium.mysql.Vote;
-import org.dementhium.mysql.Highscores;
-import org.dementhium.mysql.HighscoresPK;
 import org.jboss.netty.buffer.ChannelBuffer;
 
 /**

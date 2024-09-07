@@ -7,7 +7,7 @@ import org.dementhium.event.Tickable;
 import org.dementhium.model.Item;
 import org.dementhium.model.World;
 import org.dementhium.model.player.Player;
-import org.dementhium.model.player.Skills;
+import org.dementhium.model.player.skills.Skills;
 import org.dementhium.net.ActionSender;
 
 /**
@@ -80,7 +80,7 @@ public final class Drinking {
 		static {
 			for(Drink drink : Drink.values()) {
 				for(int i = 0; i < drink.id.length; i++) {
-					drinks.put(drink.id[i], drink);					
+					drinks.put(drink.id[i], drink);
 				}
 			}
 		}
@@ -211,7 +211,7 @@ public final class Drinking {
 			return id;
 		}
 	}
-	
+
 	@SuppressWarnings("all")
 	public static void drink(final Player player, Drink drink, int slot) {
 		if(player.isDead()) {
@@ -257,129 +257,129 @@ public final class Drinking {
 		potionName = potionName.replaceAll(" potion", "");
 		potionName = potionName.replaceAll("potion", "");
 		switch(drink.getPotionType()) {
-		case NORMAL_POTION:
-			ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				int modification = (int) Math.floor((drink == Drink.RANGE_POTION ? 4 : 3) + (player.getSkills().getLevelForXp(skill) * 0.1));
-				player.getSkills().increaseLevelToMaximumModification(skill, modification);
-			}
-			break;
-		case SUPER_POTION:
-			ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				int modification = (int) Math.floor(5 + (player.getSkills().getLevelForXp(skill) * 0.15));
-				player.getSkills().increaseLevelToMaximumModification(skill, modification);
-			}
-			break;
-		case PRAYER_POTION:
-			ActionSender.sendChatMessage(player, 0, "You drink some of your restore prayer potion.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				int modification = (int) Math.floor(7 + (player.getSkills().getLevelForXp(skill) * 0.25));
-				/**
-				 * Holy wrench increases prayer restoration.
-				 */
-				if(skill == Skills.PRAYER) {
-					if(player.getInventory().contains(6714)) {
-						modification++;
-						if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 40) {
-							modification++;
-						}
-						if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 70) {
-							modification++;
-						}
-					}
-					player.getSkills().restorePray(modification);
-				} else {
-					player.getSkills().increaseLevelToMaximum(skill, modification);
+			case NORMAL_POTION:
+				ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					int modification = (int) Math.floor((drink == Drink.RANGE_POTION ? 4 : 3) + (player.getSkills().getLevelForXp(skill) * 0.1));
+					player.getSkills().increaseLevelToMaximumModification(skill, modification);
 				}
-			}
-			break;
-		case RESTORE:
-		case SUPER_RESTORE:
-			ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				int modification = (int) (player.getSkills().getLevelForXp(skill) / 3);
-				/**
-				 * Holy wrench increases prayer restoration.
-				 */
-				if(skill == Skills.PRAYER) {
-					if(player.getInventory().contains(6714)) {
-						modification++;
-						if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 40) {
-							modification++;
-						}
-						if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 70) {
-							modification++;
-						}
-					}
-					player.getSkills().restorePray(modification);
-				} else {
-					player.getSkills().increaseLevelToMaximum(skill, modification);
+				break;
+			case SUPER_POTION:
+				ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					int modification = (int) Math.floor(5 + (player.getSkills().getLevelForXp(skill) * 0.15));
+					player.getSkills().increaseLevelToMaximumModification(skill, modification);
 				}
-			}
-			break;
-		case PLUS_5:
-			ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				int modification = 5;
-				player.getSkills().increaseLevelToMaximumModification(skill, modification);
-			}
-			break;
-		case SARADOMIN_BREW:
-			ActionSender.sendChatMessage(player, 0, "You drink some of the foul liquid.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				if(skill == Skills.HITPOINTS) {
-					int hitpointsModification = (int) (player.getSkills().getMaxHitpoints() * 0.15);
-					player.getSkills().heal(hitpointsModification, player.getSkills().getMaxHitpoints() + hitpointsModification);
-				} else if(skill == Skills.DEFENCE) {
-					int defenceModification = (int) (player.getSkills().getLevelForXp(Skills.DEFENCE) * 0.25);
-					player.getSkills().increaseLevelToMaximumModification(skill, defenceModification);
-				} else {
-					int modification = (int) (player.getSkills().getLevelForXp(skill) * 0.10);
-					player.getSkills().decreaseLevelOnce(skill, modification);
-				}
-			}
-			break;
-		case ZAMORAK_BREW:
-			ActionSender.sendChatMessage(player, 0, "You drink some of the foul liquid.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				if(skill == Skills.ATTACK) {
-					int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.ATTACK)) * 0.20);
-					player.getSkills().increaseLevelToMaximumModification(skill, attackModification);
-				} else if(skill == Skills.STRENGTH) {
-					int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.12));
-					player.getSkills().increaseLevelToMaximumModification(skill, strengthModification);
-				} else if(skill == Skills.PRAYER) {
-					int prayerModification = (int) Math.floor(player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.10);
-					player.getSkills().increaseLevelToMaximum(skill, prayerModification);
-				} else if(skill == Skills.DEFENCE) {
-					int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.DEFENCE) * 0.10));
-					player.getSkills().decreaseLevelToZero(skill, defenceModification);
-				} else if(skill == Skills.HITPOINTS) {
-					World.getWorld().submit(new Tickable(3) {
-						@Override
-						public void execute() {
-							int hitpointsModification = (int) Math.floor(2 + (player.getSkills().getLevel(Skills.HITPOINTS) * 0.10));
-							if(player.getSkills().getLevel(Skills.HITPOINTS) - hitpointsModification < 0) {
-								hitpointsModification = player.getSkills().getLevel(Skills.HITPOINTS);
+				break;
+			case PRAYER_POTION:
+				ActionSender.sendChatMessage(player, 0, "You drink some of your restore prayer potion.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					int modification = (int) Math.floor(7 + (player.getSkills().getLevelForXp(skill) * 0.25));
+					/**
+					 * Holy wrench increases prayer restoration.
+					 */
+					if(skill == Skills.PRAYER) {
+						if(player.getInventory().contains(6714)) {
+							modification++;
+							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 40) {
+								modification++;
 							}
-							player.hit(hitpointsModification);
-							this.stop();
-						}							
-					});
+							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 70) {
+								modification++;
+							}
+						}
+						player.getSkills().restorePray(modification);
+					} else {
+						player.getSkills().increaseLevelToMaximum(skill, modification);
+					}
 				}
-			}
-			break;
-		case ANTIPOISON:
-		case SUPER_ANTIPOISON:
-			ActionSender.sendChatMessage(player, 0, "You drink some of your " + item.getDefinition().getName().toLowerCase().substring(0, item.getDefinition().getName().length() - 3) + ".");
+				break;
+			case RESTORE:
+			case SUPER_RESTORE:
+				ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					int modification = (int) (player.getSkills().getLevelForXp(skill) / 3);
+					/**
+					 * Holy wrench increases prayer restoration.
+					 */
+					if(skill == Skills.PRAYER) {
+						if(player.getInventory().contains(6714)) {
+							modification++;
+							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 40) {
+								modification++;
+							}
+							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 70) {
+								modification++;
+							}
+						}
+						player.getSkills().restorePray(modification);
+					} else {
+						player.getSkills().increaseLevelToMaximum(skill, modification);
+					}
+				}
+				break;
+			case PLUS_5:
+				ActionSender.sendChatMessage(player, 0, "You drink some of your " + potionName + "potion.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					int modification = 5;
+					player.getSkills().increaseLevelToMaximumModification(skill, modification);
+				}
+				break;
+			case SARADOMIN_BREW:
+				ActionSender.sendChatMessage(player, 0, "You drink some of the foul liquid.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					if(skill == Skills.HITPOINTS) {
+						int hitpointsModification = (int) (player.getSkills().getMaxHitpoints() * 0.15);
+						player.getSkills().heal(hitpointsModification, player.getSkills().getMaxHitpoints() + hitpointsModification);
+					} else if(skill == Skills.DEFENCE) {
+						int defenceModification = (int) (player.getSkills().getLevelForXp(Skills.DEFENCE) * 0.25);
+						player.getSkills().increaseLevelToMaximumModification(skill, defenceModification);
+					} else {
+						int modification = (int) (player.getSkills().getLevelForXp(skill) * 0.10);
+						player.getSkills().decreaseLevelOnce(skill, modification);
+					}
+				}
+				break;
+			case ZAMORAK_BREW:
+				ActionSender.sendChatMessage(player, 0, "You drink some of the foul liquid.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					if(skill == Skills.ATTACK) {
+						int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.ATTACK)) * 0.20);
+						player.getSkills().increaseLevelToMaximumModification(skill, attackModification);
+					} else if(skill == Skills.STRENGTH) {
+						int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.12));
+						player.getSkills().increaseLevelToMaximumModification(skill, strengthModification);
+					} else if(skill == Skills.PRAYER) {
+						int prayerModification = (int) Math.floor(player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.10);
+						player.getSkills().increaseLevelToMaximum(skill, prayerModification);
+					} else if(skill == Skills.DEFENCE) {
+						int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.DEFENCE) * 0.10));
+						player.getSkills().decreaseLevelToZero(skill, defenceModification);
+					} else if(skill == Skills.HITPOINTS) {
+						World.getWorld().submit(new Tickable(3) {
+							@Override
+							public void execute() {
+								int hitpointsModification = (int) Math.floor(2 + (player.getSkills().getLevel(Skills.HITPOINTS) * 0.10));
+								if(player.getSkills().getLevel(Skills.HITPOINTS) - hitpointsModification < 0) {
+									hitpointsModification = player.getSkills().getLevel(Skills.HITPOINTS);
+								}
+								player.hit(hitpointsModification);
+								this.stop();
+							}
+						});
+					}
+				}
+				break;
+			case ANTIPOISON:
+			case SUPER_ANTIPOISON:
+				ActionSender.sendChatMessage(player, 0, "You drink some of your " + item.getDefinition().getName().toLowerCase().substring(0, item.getDefinition().getName().length() - 3) + ".");
 			/*if(player.getCombatState().canBePoisoned()) {
 				player.getCombatState().setCanBePoisoned(false);
 				World.getWorld().submit(new Tickable(drink.getPotionType() == PotionType.ANTIPOISON ? 150 : 1000) {
@@ -389,88 +389,88 @@ public final class Drinking {
 					}
 				});
 			}*/
-			//TODO
-			break;
-		case BEER:
-			ActionSender.sendChatMessage(player, 0, "You drink the beer. You feel slightly reinvigorated...");
-			ActionSender.sendChatMessage(player, 0, "...and slightly dizzy too.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				if(skill == Skills.ATTACK) {
-					int attackModification = (int) (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.07);
-					player.getSkills().decreaseLevelToZero(Skills.ATTACK, attackModification);							
-				} else if(skill == Skills.STRENGTH) {
-					int strengthModification = (int) (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.04);
-					player.getSkills().increaseLevelToMaximumModification(Skills.STRENGTH, strengthModification);							
+				//TODO
+				break;
+			case BEER:
+				ActionSender.sendChatMessage(player, 0, "You drink the beer. You feel slightly reinvigorated...");
+				ActionSender.sendChatMessage(player, 0, "...and slightly dizzy too.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					if(skill == Skills.ATTACK) {
+						int attackModification = (int) (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.07);
+						player.getSkills().decreaseLevelToZero(Skills.ATTACK, attackModification);
+					} else if(skill == Skills.STRENGTH) {
+						int strengthModification = (int) (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.04);
+						player.getSkills().increaseLevelToMaximumModification(Skills.STRENGTH, strengthModification);
+					}
 				}
-			}
-			break;
-		case WINE:
-			ActionSender.sendChatMessage(player, 0, "You drink the wine. You feel slightly reinvigorated...");
-			ActionSender.sendChatMessage(player, 0, "...and slightly dizzy too.");
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				if(skill == Skills.ATTACK) {
-					int attackModification = 2;
-					player.getSkills().decreaseLevelToZero(Skills.ATTACK, attackModification);
-				} else if(skill == Skills.HITPOINTS) {
-					player.getSkills().increaseLevelToMaximum(Skills.HITPOINTS, 11);
+				break;
+			case WINE:
+				ActionSender.sendChatMessage(player, 0, "You drink the wine. You feel slightly reinvigorated...");
+				ActionSender.sendChatMessage(player, 0, "...and slightly dizzy too.");
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					if(skill == Skills.ATTACK) {
+						int attackModification = 2;
+						player.getSkills().decreaseLevelToZero(Skills.ATTACK, attackModification);
+					} else if(skill == Skills.HITPOINTS) {
+						player.getSkills().increaseLevelToMaximum(Skills.HITPOINTS, 11);
+					}
 				}
-			}
-			break;
-		case OVERLOAD:
-			ActionSender.sendMessage(player, "You drink some of the foul liquid.");
-			player.setAttribute("overloads", Boolean.TRUE);
-			World.getWorld().submit(new Tickable(2) {
-				int count;
-				@Override
-				public void execute() {
-					if (count < 5 && !player.isDead()) {
-						player.animate(3170);
-						player.hit(100);
-						count++;
-					} else {
-						this.stop();
+				break;
+			case OVERLOAD:
+				ActionSender.sendMessage(player, "You drink some of the foul liquid.");
+				player.setAttribute("overloads", Boolean.TRUE);
+				World.getWorld().submit(new Tickable(2) {
+					int count;
+					@Override
+					public void execute() {
+						if (count < 5 && !player.isDead()) {
+							player.animate(3170);
+							player.hit(100);
+							count++;
+						} else {
+							this.stop();
+						}
+					}
+
+				});
+				for(int i = 0; i < drink.getSkills().length; i++) {
+					int skill = drink.getSkill(i);
+					if(skill == Skills.ATTACK) {
+						int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.ATTACK)) * 0.25);
+						player.getSkills().increaseLevelToMaximumModification(skill, attackModification);
+						continue;
+					}
+					if (skill == Skills.DEFENCE) {
+						int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.DEFENCE)) * 0.25);
+						player.getSkills().increaseLevelToMaximumModification(skill, defenceModification);
+						continue;
+					}
+					if (skill == Skills.STRENGTH) {
+						int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.STRENGTH)) * 0.25);
+						player.getSkills().increaseLevelToMaximumModification(skill, strengthModification);
+						continue;
+					}
+					if (skill == Skills.RANGE) {
+						int rangeModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.RANGE)) * 0.22);
+						player.getSkills().increaseLevelToMaximumModification(skill, rangeModification);
+						continue;
+					}
+					if (skill == Skills.MAGIC) {
+						player.getSkills().increaseLevelToMaximumModification(skill, 7);
+						continue;
 					}
 				}
 
-			});
-			for(int i = 0; i < drink.getSkills().length; i++) {
-				int skill = drink.getSkill(i);
-				if(skill == Skills.ATTACK) {
-					int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.ATTACK)) * 0.25);
-					player.getSkills().increaseLevelToMaximumModification(skill, attackModification);
-					continue;
-				}
-				if (skill == Skills.DEFENCE) {
-					int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.DEFENCE)) * 0.25);
-					player.getSkills().increaseLevelToMaximumModification(skill, defenceModification);
-					continue;
-				}
-				if (skill == Skills.STRENGTH) {
-					int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.STRENGTH)) * 0.25);
-					player.getSkills().increaseLevelToMaximumModification(skill, strengthModification);
-					continue;
-				}
-				if (skill == Skills.RANGE) {
-					int rangeModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.RANGE)) * 0.22);
-					player.getSkills().increaseLevelToMaximumModification(skill, rangeModification);
-					continue;
-				}
-				if (skill == Skills.MAGIC) {
-					player.getSkills().increaseLevelToMaximumModification(skill, 7);
-					continue;
-				}
-			}
-
-			World.getWorld().submit(new Tickable(300) {
-				@Override
-				public void execute() {
-					player.setAttribute("overloads", Boolean.FALSE);
-					this.stop();
-				}
-			});
-			break;
+				World.getWorld().submit(new Tickable(300) {
+					@Override
+					public void execute() {
+						player.setAttribute("overloads", Boolean.FALSE);
+						this.stop();
+					}
+				});
+				break;
 		}
 
 		int currentPotionDose = 0;

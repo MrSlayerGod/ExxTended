@@ -8,9 +8,8 @@ import org.dementhium.model.Item;
 import org.dementhium.model.definition.ItemDefinition;
 import org.dementhium.model.mask.Animation;
 import org.dementhium.model.player.Player;
-import org.dementhium.model.player.Skills;
+import org.dementhium.model.player.skills.Skills;
 import org.dementhium.util.Misc;
-import org.jetbrains.annotations.NotNull;
 
 /**
  *

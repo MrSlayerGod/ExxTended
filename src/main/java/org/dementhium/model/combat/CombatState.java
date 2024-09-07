@@ -68,6 +68,13 @@ public final class CombatState {
 		this.lastAttacked = System.currentTimeMillis();
 	}
 
+	public void reset() {
+		if (lastAttacker != null) {
+			getLastAttacker().getCombatState().setLastAttacker(null);
+		}
+		setLastAttacker(null);
+	}
+
 	public boolean isFrozen() {
 		return System.currentTimeMillis() - freezeTimer < frozenTime;
 	}
