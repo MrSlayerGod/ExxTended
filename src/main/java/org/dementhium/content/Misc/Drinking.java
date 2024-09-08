@@ -23,41 +23,41 @@ public final class Drinking {
 	 */
 	public static enum Drink {
 
-		ATTACK_POTION(new int[] { 125, 123, 121, 2428 }, new int[] { Skills.ATTACK }, PotionType.NORMAL_POTION),
+		ATTACK_POTION(new int[] { 125, 123, 121, 2428 }, new int[] { Skills.Attack}, PotionType.NORMAL_POTION),
 
-		STRENGTH_POTION(new int[] { 119, 117, 115, 113 }, new int[] { Skills.STRENGTH }, PotionType.NORMAL_POTION),
+		STRENGTH_POTION(new int[] { 119, 117, 115, 113 }, new int[] { Skills.Strength}, PotionType.NORMAL_POTION),
 
-		DEFENCE_POTION(new int[] { 137, 135, 133, 2432 }, new int[] { Skills.DEFENCE }, PotionType.NORMAL_POTION),
+		DEFENCE_POTION(new int[] { 137, 135, 133, 2432 }, new int[] { Skills.Defence}, PotionType.NORMAL_POTION),
 
-		RANGE_POTION(new int[] { 173, 171, 169, 2444 }, new int[] { Skills.RANGE }, PotionType.NORMAL_POTION),
+		RANGE_POTION(new int[] { 173, 171, 169, 2444 }, new int[] { Skills.Range}, PotionType.NORMAL_POTION),
 
-		MAGIC_POTION(new int[] { 3046, 3044, 3042, 3040 }, new int[] { Skills.MAGIC }, PotionType.PLUS_5),
+		MAGIC_POTION(new int[] { 3046, 3044, 3042, 3040 }, new int[] { Skills.Magic}, PotionType.PLUS_5),
 
-		RESTORE_POTION(new int[] { 131, 129, 127, 2430 }, new int[] { Skills.DEFENCE, Skills.ATTACK, Skills.STRENGTH, Skills.MAGIC, Skills.RANGE }, PotionType.RESTORE),
+		RESTORE_POTION(new int[] { 131, 129, 127, 2430 }, new int[] { Skills.Defence, Skills.Attack, Skills.Strength, Skills.Magic, Skills.Range}, PotionType.RESTORE),
 
-		SUPER_RESTORE_POTION(new int[] { 3030, 3028, 3026, 3024 }, new int[] { Skills.ATTACK, Skills.STRENGTH, Skills.DEFENCE, Skills.MAGIC, Skills.RANGE, Skills.PRAYER, Skills.AGILITY, Skills.COOKING, Skills.CRAFTING, Skills.FARMING, Skills.FIREMAKING, Skills.FISHING, Skills.FLETCHING, Skills.HERBLORE, Skills.MINING, Skills.RUNECRAFTING, Skills.SLAYER, Skills.SMITHING, Skills.THIEVING, Skills.WOODCUTTING }, PotionType.SUPER_RESTORE),
+		SUPER_RESTORE_POTION(new int[] { 3030, 3028, 3026, 3024 }, new int[] { Skills.Attack, Skills.Strength, Skills.Defence, Skills.Magic, Skills.Range, Skills.Prayer, Skills.Agility, Skills.Cooking, Skills.Crafting, Skills.Farming, Skills.Firemaking, Skills.Fishing, Skills.Fletching, Skills.Herblore, Skills.Mining, Skills.Runecrafting, Skills.Slayer, Skills.Smithing, Skills.Thieving, Skills.Woodcutting}, PotionType.SUPER_RESTORE),
 
-		PRAYER_POTION(new int[] { 143, 141, 139, 2434 }, new int[] { Skills.PRAYER }, PotionType.PRAYER_POTION),
+		PRAYER_POTION(new int[] { 143, 141, 139, 2434 }, new int[] { Skills.Prayer}, PotionType.PRAYER_POTION),
 
-		SUPER_ATTACK_POTION(new int[] { 149, 147, 145, 2436 }, new int[] { Skills.ATTACK }, PotionType.SUPER_POTION),
+		SUPER_ATTACK_POTION(new int[] { 149, 147, 145, 2436 }, new int[] { Skills.Attack}, PotionType.SUPER_POTION),
 
-		SUPER_STRENGTH_POTION(new int[] { 161, 159, 157, 2440 }, new int[] { Skills.STRENGTH }, PotionType.SUPER_POTION),
+		SUPER_STRENGTH_POTION(new int[] { 161, 159, 157, 2440 }, new int[] { Skills.Strength}, PotionType.SUPER_POTION),
 
-		SUPER_DEFENCE_POTION(new int[] { 167, 165, 163, 2442 }, new int[] { Skills.DEFENCE }, PotionType.SUPER_POTION),
+		SUPER_DEFENCE_POTION(new int[] { 167, 165, 163, 2442 }, new int[] { Skills.Defence}, PotionType.SUPER_POTION),
 
-		SARADOMIN_BREW(new int[] { 6691, 6689, 6687, 6685 }, new int[] { Skills.ATTACK, Skills.DEFENCE, Skills.STRENGTH, Skills.MAGIC, Skills.RANGE, Skills.HITPOINTS }, PotionType.SARADOMIN_BREW),
+		SARADOMIN_BREW(new int[] { 6691, 6689, 6687, 6685 }, new int[] { Skills.Attack, Skills.Defence, Skills.Strength, Skills.Magic, Skills.Range, Skills.Hitpoints}, PotionType.SARADOMIN_BREW),
 
-		ZAMORAK_BREW(new int[] { 193, 191, 189, 2450 }, new int[] { Skills.ATTACK, Skills.STRENGTH, Skills.DEFENCE, Skills.HITPOINTS, Skills.PRAYER }, PotionType.ZAMORAK_BREW),
+		ZAMORAK_BREW(new int[] { 193, 191, 189, 2450 }, new int[] { Skills.Attack, Skills.Strength, Skills.Defence, Skills.Hitpoints, Skills.Prayer}, PotionType.ZAMORAK_BREW),
 
 		ANTIPOISON(new int[] { 179, 177, 175, 2446 }, new int[] {  }, PotionType.ANTIPOISON),
 
 		SUPER_ANTIPOISON(new int[] { 185, 183, 181, 2448 }, new int[] {  }, PotionType.SUPER_ANTIPOISON),
 
-		BEER(new int[] { 1919, 1917 }, new int[] { Skills.ATTACK, Skills.STRENGTH }, PotionType.BEER),
+		BEER(new int[] { 1919, 1917 }, new int[] { Skills.Attack, Skills.Strength}, PotionType.BEER),
 
-		JUG(new int[] { 1935, 1993 }, new int[] { Skills.ATTACK, Skills.HITPOINTS }, PotionType.WINE),
+		JUG(new int[] { 1935, 1993 }, new int[] { Skills.Attack, Skills.Hitpoints}, PotionType.WINE),
 
-		OVERLOAD(new int[] { 15335, 15334, 15333, 15332 }, new int[] { Skills.ATTACK, Skills.STRENGTH, Skills.DEFENCE, Skills.RANGE, Skills.MAGIC }, PotionType.OVERLOAD)
+		OVERLOAD(new int[] { 15335, 15334, 15333, 15332 }, new int[] { Skills.Attack, Skills.Strength, Skills.Defence, Skills.Range, Skills.Magic}, PotionType.OVERLOAD)
 		;
 
 		/**
@@ -281,13 +281,13 @@ public final class Drinking {
 					/**
 					 * Holy wrench increases prayer restoration.
 					 */
-					if(skill == Skills.PRAYER) {
+					if(skill == Skills.Prayer) {
 						if(player.getInventory().contains(6714)) {
 							modification++;
-							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 40) {
+							if(player.getSkills().getLevelForXp(Skills.Prayer) >= 40) {
 								modification++;
 							}
-							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 70) {
+							if(player.getSkills().getLevelForXp(Skills.Prayer) >= 70) {
 								modification++;
 							}
 						}
@@ -306,13 +306,13 @@ public final class Drinking {
 					/**
 					 * Holy wrench increases prayer restoration.
 					 */
-					if(skill == Skills.PRAYER) {
+					if(skill == Skills.Prayer) {
 						if(player.getInventory().contains(6714)) {
 							modification++;
-							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 40) {
+							if(player.getSkills().getLevelForXp(Skills.Prayer) >= 40) {
 								modification++;
 							}
-							if(player.getSkills().getLevelForXp(Skills.PRAYER) >= 70) {
+							if(player.getSkills().getLevelForXp(Skills.Prayer) >= 70) {
 								modification++;
 							}
 						}
@@ -334,11 +334,11 @@ public final class Drinking {
 				ActionSender.sendChatMessage(player, 0, "You drink some of the foul liquid.");
 				for(int i = 0; i < drink.getSkills().length; i++) {
 					int skill = drink.getSkill(i);
-					if(skill == Skills.HITPOINTS) {
+					if(skill == Skills.Hitpoints) {
 						int hitpointsModification = (int) (player.getSkills().getMaxHitpoints() * 0.15);
 						player.getSkills().heal(hitpointsModification, player.getSkills().getMaxHitpoints() + hitpointsModification);
-					} else if(skill == Skills.DEFENCE) {
-						int defenceModification = (int) (player.getSkills().getLevelForXp(Skills.DEFENCE) * 0.25);
+					} else if(skill == Skills.Defence) {
+						int defenceModification = (int) (player.getSkills().getLevelForXp(Skills.Defence) * 0.25);
 						player.getSkills().increaseLevelToMaximumModification(skill, defenceModification);
 					} else {
 						int modification = (int) (player.getSkills().getLevelForXp(skill) * 0.10);
@@ -350,25 +350,25 @@ public final class Drinking {
 				ActionSender.sendChatMessage(player, 0, "You drink some of the foul liquid.");
 				for(int i = 0; i < drink.getSkills().length; i++) {
 					int skill = drink.getSkill(i);
-					if(skill == Skills.ATTACK) {
-						int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.ATTACK)) * 0.20);
+					if(skill == Skills.Attack) {
+						int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.Attack)) * 0.20);
 						player.getSkills().increaseLevelToMaximumModification(skill, attackModification);
-					} else if(skill == Skills.STRENGTH) {
-						int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.12));
+					} else if(skill == Skills.Strength) {
+						int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.Strength) * 0.12));
 						player.getSkills().increaseLevelToMaximumModification(skill, strengthModification);
-					} else if(skill == Skills.PRAYER) {
-						int prayerModification = (int) Math.floor(player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.10);
+					} else if(skill == Skills.Prayer) {
+						int prayerModification = (int) Math.floor(player.getSkills().getLevelForXp(Skills.Strength) * 0.10);
 						player.getSkills().increaseLevelToMaximum(skill, prayerModification);
-					} else if(skill == Skills.DEFENCE) {
-						int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.DEFENCE) * 0.10));
+					} else if(skill == Skills.Defence) {
+						int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.Defence) * 0.10));
 						player.getSkills().decreaseLevelToZero(skill, defenceModification);
-					} else if(skill == Skills.HITPOINTS) {
+					} else if(skill == Skills.Hitpoints) {
 						World.getWorld().submit(new Tickable(3) {
 							@Override
 							public void execute() {
-								int hitpointsModification = (int) Math.floor(2 + (player.getSkills().getLevel(Skills.HITPOINTS) * 0.10));
-								if(player.getSkills().getLevel(Skills.HITPOINTS) - hitpointsModification < 0) {
-									hitpointsModification = player.getSkills().getLevel(Skills.HITPOINTS);
+								int hitpointsModification = (int) Math.floor(2 + (player.getSkills().getLevel(Skills.Hitpoints) * 0.10));
+								if(player.getSkills().getLevel(Skills.Hitpoints) - hitpointsModification < 0) {
+									hitpointsModification = player.getSkills().getLevel(Skills.Hitpoints);
 								}
 								player.hit(hitpointsModification);
 								this.stop();
@@ -396,12 +396,12 @@ public final class Drinking {
 				ActionSender.sendChatMessage(player, 0, "...and slightly dizzy too.");
 				for(int i = 0; i < drink.getSkills().length; i++) {
 					int skill = drink.getSkill(i);
-					if(skill == Skills.ATTACK) {
-						int attackModification = (int) (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.07);
-						player.getSkills().decreaseLevelToZero(Skills.ATTACK, attackModification);
-					} else if(skill == Skills.STRENGTH) {
-						int strengthModification = (int) (player.getSkills().getLevelForXp(Skills.STRENGTH) * 0.04);
-						player.getSkills().increaseLevelToMaximumModification(Skills.STRENGTH, strengthModification);
+					if(skill == Skills.Attack) {
+						int attackModification = (int) (player.getSkills().getLevelForXp(Skills.Strength) * 0.07);
+						player.getSkills().decreaseLevelToZero(Skills.Attack, attackModification);
+					} else if(skill == Skills.Strength) {
+						int strengthModification = (int) (player.getSkills().getLevelForXp(Skills.Strength) * 0.04);
+						player.getSkills().increaseLevelToMaximumModification(Skills.Strength, strengthModification);
 					}
 				}
 				break;
@@ -410,11 +410,11 @@ public final class Drinking {
 				ActionSender.sendChatMessage(player, 0, "...and slightly dizzy too.");
 				for(int i = 0; i < drink.getSkills().length; i++) {
 					int skill = drink.getSkill(i);
-					if(skill == Skills.ATTACK) {
+					if(skill == Skills.Attack) {
 						int attackModification = 2;
-						player.getSkills().decreaseLevelToZero(Skills.ATTACK, attackModification);
-					} else if(skill == Skills.HITPOINTS) {
-						player.getSkills().increaseLevelToMaximum(Skills.HITPOINTS, 11);
+						player.getSkills().decreaseLevelToZero(Skills.Attack, attackModification);
+					} else if(skill == Skills.Hitpoints) {
+						player.getSkills().increaseLevelToMaximum(Skills.Hitpoints, 11);
 					}
 				}
 				break;
@@ -437,27 +437,27 @@ public final class Drinking {
 				});
 				for(int i = 0; i < drink.getSkills().length; i++) {
 					int skill = drink.getSkill(i);
-					if(skill == Skills.ATTACK) {
-						int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.ATTACK)) * 0.25);
+					if(skill == Skills.Attack) {
+						int attackModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.Attack)) * 0.25);
 						player.getSkills().increaseLevelToMaximumModification(skill, attackModification);
 						continue;
 					}
-					if (skill == Skills.DEFENCE) {
-						int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.DEFENCE)) * 0.25);
+					if (skill == Skills.Defence) {
+						int defenceModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.Defence)) * 0.25);
 						player.getSkills().increaseLevelToMaximumModification(skill, defenceModification);
 						continue;
 					}
-					if (skill == Skills.STRENGTH) {
-						int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.STRENGTH)) * 0.25);
+					if (skill == Skills.Strength) {
+						int strengthModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.Strength)) * 0.25);
 						player.getSkills().increaseLevelToMaximumModification(skill, strengthModification);
 						continue;
 					}
-					if (skill == Skills.RANGE) {
-						int rangeModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.RANGE)) * 0.22);
+					if (skill == Skills.Range) {
+						int rangeModification = (int) Math.floor(2 + (player.getSkills().getLevelForXp(Skills.Range)) * 0.22);
 						player.getSkills().increaseLevelToMaximumModification(skill, rangeModification);
 						continue;
 					}
-					if (skill == Skills.MAGIC) {
+					if (skill == Skills.Magic) {
 						player.getSkills().increaseLevelToMaximumModification(skill, 7);
 						continue;
 					}

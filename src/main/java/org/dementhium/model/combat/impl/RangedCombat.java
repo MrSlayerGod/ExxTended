@@ -275,7 +275,7 @@ public final class RangedCombat extends CombatAction {
 		if (mob.isPlayer()) {
 			Player player = mob.getPlayer();
 			int bonus = 0;
-			bonus += player.getSkills().getLevel(Skills.RANGE);
+			bonus += player.getSkills().getLevel(Skills.Range);
 			double prayerBonus = 1.0;
 			if (player.getPrayer().usingPrayer(0, Prayer.SHARP_EYE)) {
 				prayerBonus = 1.05;

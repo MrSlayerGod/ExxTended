@@ -60,7 +60,7 @@ public final class Woodcutting extends HarvestingAction {
 
 		@Override
 		public int getRequiredSkill() {
-			return Skills.WOODCUTTING;
+			return Skills.Woodcutting;
 		}
 
 		@Override
@@ -162,12 +162,12 @@ public final class Woodcutting extends HarvestingAction {
 
 	@Override
 	public int getSkill() {
-		return Skills.WOODCUTTING;
+		return Skills.Woodcutting;
 	}
 
 	@Override
 	public int getCycleTime() {
-		int skill = getMob().getPlayer().getSkills().getLevel(Skills.WOODCUTTING);
+		int skill = getMob().getPlayer().getSkills().getLevel(Skills.Woodcutting);
 		int level = tree.level;
 		int modifier = hatchet.level;
 		int randomAmt = Misc.random(3);
@@ -190,7 +190,7 @@ public final class Woodcutting extends HarvestingAction {
 			for(Map.Entry<Integer, Hatchet> entry : Hatchet.hatchets.entrySet()) {
 				if(player.getInventory().contains(entry.getKey()) || player.getEquipment().getSlot(3) == entry.getKey()) {
 					hatchet = entry.getValue();
-					if(getMob().getPlayer().getSkills().getLevel(Skills.WOODCUTTING) >= hatchet.level) {
+					if(getMob().getPlayer().getSkills().getLevel(Skills.Woodcutting) >= hatchet.level) {
 						break;
 					}
 				}

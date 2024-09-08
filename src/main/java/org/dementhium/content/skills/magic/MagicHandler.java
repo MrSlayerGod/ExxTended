@@ -72,7 +72,7 @@ public class MagicHandler {
 					return false;
 				}
 			}
-			if (player.getSkills().getLevel(Skills.MAGIC) < spell.getReqLvl()) {
+			if (player.getSkills().getLevel(Skills.Magic) < spell.getReqLvl()) {
 				ActionSender.sendMessage(player, "You need a magic level of " + spell.getReqLvl() + " to cast " + spell.getSpellName() + ".");
 				return false;
 			}
@@ -282,7 +282,7 @@ public class MagicHandler {
 	public static int playerDamage(Player player, Mob opp, int damage) {
 		int def = (int) (opp.isPlayer() ? (opp.getPlayer().getBonuses().getBonus(Bonuses.MAGIC_DEFENCE) * 1.20) : opp.getNpc().getDefinition().getDefenceBonus());
 
-		int atk = player.getSkills().getLevel(Skills.MAGIC);
+		int atk = player.getSkills().getLevel(Skills.Magic);
 
 		int atkBonus = player.getBonuses().getBonus(Bonuses.MAGIC_ATTACK);
 			

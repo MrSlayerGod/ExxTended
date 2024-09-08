@@ -23,9 +23,9 @@ public final class Combat {
 	 * 
 	 */
 	public static enum FightType {
-		RANGE(Skills.RANGE), 
-		MAGIC(Skills.MAGIC), 
-		MELEE(Skills.STRENGTH);
+		RANGE(Skills.Range),
+		MAGIC(Skills.Magic),
+		MELEE(Skills.Strength);
 
 		private final int skill;
 

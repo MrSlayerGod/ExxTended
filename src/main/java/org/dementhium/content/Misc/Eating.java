@@ -194,7 +194,7 @@ public class Eating {
 				if(!player.getGroup().equalsIgnoreCase("Donator") && !player.getGroup().equalsIgnoreCase("Premium") && !player.getGroup().equalsIgnoreCase("Super") && player.getRights() < 2) {
 					player.sendMessage("You need to be a donator to eat rocktails.");
 				} else {
-					player.getSkills().heal(food.getHeal() * 10, (player.getSkills().getLevelForXp(Skills.HITPOINTS) * 10) + 100);
+					player.getSkills().heal(food.getHeal() * 10, (player.getSkills().getLevelForXp(Skills.Hitpoints) * 10) + 100);
 				}
 			} else {
 				player.getSkills().heal(food.getHeal() * 10);

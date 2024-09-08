@@ -101,7 +101,7 @@ public abstract class CombatAction {
 				turmoilBonus[0] = level * (0.23 + player.getPrayer().getTurmoil().getStrengthBoost());
 
 				if(victim.isPlayer()) {
-					turmoilBonus[1] = victim.getPlayer().getSkills().getLevel(Skills.STRENGTH) * (0.10 + player.getPrayer().getTurmoil().getStrengthBoost());
+					turmoilBonus[1] = victim.getPlayer().getSkills().getLevel(Skills.Strength) * (0.10 + player.getPrayer().getTurmoil().getStrengthBoost());
 				}
 			}
 
@@ -154,7 +154,7 @@ public abstract class CombatAction {
 			}
 			int maxHit = (int) (13 + ((averageStrength + 8) * (bonus + 64) / 64) * 0.93); //note from mystic: I'm not the best at math so I'll try to fix this as we go along lol
 			if(player.getEquipment().barrowsSet(2)) {
-				maxHit += ((player.getSkills().getLevelForXp(Skills.HITPOINTS) * 10) - player.getSkills().getHitPoints()) * 0.30;
+				maxHit += ((player.getSkills().getLevelForXp(Skills.Hitpoints) * 10) - player.getSkills().getHitPoints()) * 0.30;
 			}
 			if(player.hitCap) {
 				return 9001;
@@ -172,11 +172,11 @@ public abstract class CombatAction {
 	public int getDefenceBonus(Mob attacker, Mob victim) {
 		if (victim.isPlayer()) {
 			Player player = victim.getPlayer();
-			int bonus = player.getSkills().getLevel(Skills.DEFENCE);
+			int bonus = player.getSkills().getLevel(Skills.Defence);
 			if(player.getPrayer().usingPrayer(1, Prayer.TURMOIL) && player.getPrayer().getTurmoil() != null) {
 				bonus += (0.15 + player.getPrayer().getTurmoil().getDefenceBoost());
 				if(attacker.isPlayer()) {
-					bonus += attacker.getPlayer().getSkills().getLevel(Skills.DEFENCE) * (0.15 + player.getPrayer().getTurmoil().getDefenceBoost());
+					bonus += attacker.getPlayer().getSkills().getLevel(Skills.Defence) * (0.15 + player.getPrayer().getTurmoil().getDefenceBoost());
 				}
 			}
 			if(attacker.isPlayer()) {

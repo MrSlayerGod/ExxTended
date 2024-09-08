@@ -101,7 +101,7 @@ public final class MeleeCombat extends CombatAction {
 		} else if(specialPerformed) {
 			if(mob.isPlayer() && mob.getPlayer().getEquipment().getSlot(Equipment.SLOT_WEAPON) == 19784) {
 				Player player = mob.getPlayer();
-				int magicBonus = (int) ((player.getSkills().getLevel(Skills.MAGIC) + player.getBonuses().getBonus(Bonuses.MAGIC)) * 1.785);
+				int magicBonus = (int) ((player.getSkills().getLevel(Skills.Magic) + player.getBonuses().getBonus(Bonuses.MAGIC)) * 1.785);
 				damage = (int) (calculateHit(damage, average) + Misc.random(magicBonus) + magicBonus);
 			} else {
 				if(damage > 0) {
@@ -205,8 +205,8 @@ public final class MeleeCombat extends CombatAction {
 				player.graphics(1220);
 				int hitpointsHeal = damage / 2;
 				int prayerHeal = damage / 4;
-				player.getSkills().increaseLevelToMaximum(Skills.HITPOINTS, hitpointsHeal);
-				player.getSkills().increaseLevelToMaximum(Skills.PRAYER, prayerHeal);
+				player.getSkills().increaseLevelToMaximum(Skills.Hitpoints, hitpointsHeal);
+				player.getSkills().increaseLevelToMaximum(Skills.Prayer, prayerHeal);
 				break;
 			case 14484:
 				player.graphics(1950);
@@ -288,7 +288,7 @@ public final class MeleeCombat extends CombatAction {
 		CombatState state = mob.getCombatState();
 		if (mob.isPlayer()) {
 			Player player = mob.getPlayer();
-			double bonus = player.getSkills().getLevel(Skills.ATTACK);
+			double bonus = player.getSkills().getLevel(Skills.Attack);
 			/*if(player.getPrayer().getTurmoil() != null && player.getPrayer().usingPrayer(1, Prayer.TURMOIL)) {
 				bonus *= 0.15;
 				double boost = 0;
