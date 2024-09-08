@@ -8,4 +8,9 @@ enum class SkillId(val defaultLevel: Int = 1, val maxAllowedLevel: Int = 99) {
     Runecrafting, Construction, Hunter, Summoning, Dungeoneering(maxAllowedLevel = 120);
 
     val id by this::ordinal
+
+    companion object {
+        fun byId(id: Int): SkillId = entries.first { it.id == id }
+        fun byName(name: String): SkillId = entries.first { it.name.equals(name, ignoreCase = true) }
+    }
 }

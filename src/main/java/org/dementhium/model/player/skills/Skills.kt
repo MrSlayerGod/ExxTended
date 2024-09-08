@@ -41,7 +41,9 @@ class Skills(val player: Player) {
 
     private fun SkillId.sendSkillLevel() { ActionSender.sendSkillLevel(player, id) }
 
-    fun getSkill(skillId: SkillId) = skillsMap[skillId]
+    fun getSkill(skillId: SkillId): Skill = skillsMap[skillId]
+
+    fun getXp(skillId: SkillId): Double = skillId.experience
 
     fun hit(hitValue: Int) {
         this.hitPoints = (this.hitPoints - hitValue).coerceAtLeast(0)
@@ -81,13 +83,27 @@ class Skills(val player: Player) {
         skillId.sendSkillLevel()
     }
 
+    fun boostLevel(skillId: SkillId, byAmount: Int, cap: Int) {
+        setCurrentLevel(skillId, skillId.currentLevel + byAmount, ceiling = cap)
+    }
+
+    fun drain(skillId: SkillId, byAmount: Int, floor: Int) {
+        setCurrentLevel(skillId, skillId.currentLevel - byAmount, ceiling = floor)
+    }
+
     val combatLevel: Int get() = combatLevelFormula.calcCombatLevel(this)
 
-    fun setXp(id: Int, newExperience: Double) {
-        val skillId = id.skillId
-        skillId.experience = newExperience
+    fun setXp(skillId: SkillId, newExperience: Double) {
+        if (newExperience < skillId.experience) {
+            skillId.experience = newExperience
+        } else {
+            val delta = newExperience - skillId.experience
+            addExperience(skillId, delta)
+        }
         skillId.sendSkillLevel()
     }
+
+    fun setXp(id: Int, newExperience: Double) = setXp(id.skillId, newExperience)
 
     fun addExperience(skillId: SkillId, expToAdd: Double) {
         val oldMax = skillId.maximumLevel
@@ -126,6 +142,8 @@ class Skills(val player: Player) {
         setCurrentLevel(skillId, skillId.currentLevel - amount, floor = skillId.maximumLevel - amount)
     }
 
+    fun getLevel(skillId: SkillId): Int = skillId.currentLevel
+
     /**
      * Yucky old funcs, still refactored tho
      */
@@ -135,7 +153,7 @@ class Skills(val player: Player) {
     fun set(id: Int, newLevel: Int) = setCurrentLevel(id.skillId, newLevel)
     fun sendSkillLevels() = SkillId.entries.forEach { it.sendSkillLevel() }
     fun setLevel(id: Int, newLevel: Int) = setCurrentLevel(id.skillId, newLevel)
-    fun getLevel(id: Int): Int = id.skillId.currentLevel
+    fun getLevel(id: Int): Int = getLevel(id.skillId)
     fun getXp(id: Int): Double = id.skillId.experience
     fun getXPForLevel(level: Int) = expFormula.calcExpForLevel(level).toInt()
     fun getLevelForXp(id: Int) = id.skillId.maximumLevel
