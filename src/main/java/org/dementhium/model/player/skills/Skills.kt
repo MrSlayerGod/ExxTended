@@ -7,6 +7,7 @@ import org.dementhium.net.ActionSender
 import org.dementhium.util.TrueMap
 import org.dementhium.util.direction
 import org.dementhium.util.submitTickable
+import kotlin.enums.EnumEntries
 import kotlin.math.max
 
 /**
@@ -21,19 +22,20 @@ class Skills(val player: Player) {
     val isDead: Boolean get() = this.hitPoints <= 0
     var hasSentDead: Boolean = false
     private val skillsMap: TrueMap<SkillId, Skill> = TrueMap(SkillId.entries) { Skill(this, it) }
+    val skills: EnumEntries<SkillId> by lazy { SkillId.entries }
     val maxHitpoints: Int get() = SkillId.Hitpoints.maximumLevel * 10
 
-    private val Int.skillId: SkillId get() = SkillId.entries[this]
+    private val Int.skillId: SkillId get() = SkillId.byId(this)
 
-    private var SkillId.currentLevel: Int
+    var SkillId.currentLevel: Int
         get() = skillsMap[this].currentLevel
         set(value) { skillsMap[this].currentLevel = value }
 
-    private var SkillId.experience: Double
+    var SkillId.experience: Double
         get() = skillsMap[this].experience
         set(value) { skillsMap[this].experience = value }
 
-    private val SkillId.maximumLevel: Int
+    val SkillId.maximumLevel: Int
         get() = skillsMap[this].maxLevel
 
 
@@ -76,19 +78,20 @@ class Skills(val player: Player) {
         skillId: SkillId,
         newCurrent: Int,
         floor: Int = 0,
-        ceiling: Int = max(skillId.maximumLevel, skillId.currentLevel)
+        ceiling: Int = skillId.maximumLevel
     ) {
-        val newAmount = newCurrent.coerceIn(floor, ceiling)
+        val realMax = max(ceiling, skillId.currentLevel)
+        val newAmount = newCurrent.coerceIn(floor, realMax)
         skillId.currentLevel = newAmount
         skillId.sendSkillLevel()
     }
 
-    fun boostLevel(skillId: SkillId, byAmount: Int, cap: Int) {
+    fun boostLevel(skillId: SkillId, byAmount: Int, cap: Int = skillId.maximumLevel) {
         setCurrentLevel(skillId, skillId.currentLevel + byAmount, ceiling = cap)
     }
 
-    fun drain(skillId: SkillId, byAmount: Int, floor: Int) {
-        setCurrentLevel(skillId, skillId.currentLevel - byAmount, ceiling = floor)
+    fun drainLevel(skillId: SkillId, byAmount: Int, floor: Int = 1) {
+        setCurrentLevel(skillId, skillId.currentLevel - byAmount, floor = floor)
     }
 
     val combatLevel: Int get() = combatLevelFormula.calcCombatLevel(this)
