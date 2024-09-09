@@ -3,7 +3,7 @@ package org.dementhium.net.packethandlers;
 import org.dementhium.content.interfaces.EmoteTab;
 import org.dementhium.content.misc.Drinking;
 import org.dementhium.content.misc.Eating;
-import org.dementhium.content.misc.Drinking.Drink;
+import org.dementhium.content.misc.drinking.Drink;
 import org.dementhium.content.misc.Eating.Food;
 import org.dementhium.content.skills.magic.MagicHandler;
 import org.dementhium.model.GroundItemManager;
@@ -611,7 +611,7 @@ public class ActionButtonHandler extends PacketHandler {
 					Eating.eat(p, food, slot);
 					return;
 				}
-				Drink drink = Drink.forId(itemId);
+				Drink drink = Drinking.forId(itemId);
 				if (drink != null) {
 					Drinking.drink(p, drink, slot);
 					return;
