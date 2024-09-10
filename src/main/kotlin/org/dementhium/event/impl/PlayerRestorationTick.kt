@@ -5,12 +5,13 @@ import org.dementhium.model.player.Player
 import org.dementhium.model.player.skills.Skills
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.net.ActionSender
+import org.dementhium.util.direction
 
 data class PlayerRestorationConfig(
     val specialTimer: Int = 50,
     val runEnergyTimer: Int =  2,
     val levelNormalizationTimer: Int = 90,
-    val passiveHealTimer: Int = 10,
+    val healthNormalizationTimer: Int = 10,
     val maxSpecialAmount: Int = 1_000,
     val maxRunEnergy: Int = 100,
     val specialRestoreMax: Int = 100,
@@ -33,7 +34,7 @@ class PlayerRestorationTick(
     private var specialTimer = restorationConfig.specialTimer
     private var runEnergyTimer = restorationConfig.runEnergyTimer
     private var levelNormalizationTimer = restorationConfig.levelNormalizationTimer
-    private var passiveHealTimer = restorationConfig.passiveHealTimer
+    private var healthNormalizationTimer = restorationConfig.healthNormalizationTimer
 
     override fun execute() {
         val isOnline = player.isOnline
@@ -67,11 +68,11 @@ class PlayerRestorationTick(
             }
         }
 
-        if (passiveHealTimer-- == 0) {
-            passiveHealTimer = restorationConfig.passiveHealTimer
-            if (player.skills.hitPoints < player.skills.maxHitpoints) {
-                player.skills.heal(restorationConfig.healAmount)
-            }
+        if (healthNormalizationTimer-- == 0) {
+            healthNormalizationTimer = restorationConfig.healthNormalizationTimer
+            if (player.skills.hitPoints == player.skills.maxHitpoints) return
+            val normalizeDirection = direction(player.skills.hitPoints < player.skills.maxHitpoints)
+            player.skills.heal(restorationConfig.healAmount * normalizeDirection)
         }
 
     }
