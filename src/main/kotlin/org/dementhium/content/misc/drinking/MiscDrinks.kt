@@ -42,9 +42,9 @@ data object KarmajaRum: SingleDose(
     emptyId = ItemId.EMPTY_WINE_BOTTLE
 )
 data object BeerKeg: SingleDose(
-    ItemId.KEG_OF_BEER,
+    ItemId.KEG_OF_BEER_3801,
     HealBy(150) + Strength.Boost(flat = 2, percent = 10) + Attack.Drain(flat = 5, percent = 50),
-    emptyId = ItemId.KEG_OF_BEER
+    emptyId = ItemId.KEG_OF_BEER_3801
 )
 data object Vodka: SingleDose(
     ItemId.VODKA,
