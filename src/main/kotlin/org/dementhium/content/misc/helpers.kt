@@ -1,6 +1,5 @@
-package org.dementhium.content.misc.drinking
+package org.dementhium.content.misc
 
-import org.dementhium.content.misc.SkillEffect
 import org.dementhium.model.World
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.Skills
@@ -12,11 +11,6 @@ class BoostDrainContext(private val skills: Skills, private val skillId: SkillId
     val maximumLevel get() = with(skills) { skillId.maximumLevel }
 }
 
-/* 1 dose, 2 dose, 3 dose, 4 dose, etc */
-@JvmInline
-value class Doses(val doseIds: List<Int>): List<Int> by doseIds {
-    constructor(vararg doseIds: Int): this(doseIds.map { it })
-}
 
 fun SkillId.Restore(
     flat: Int = 0,
@@ -56,13 +50,13 @@ fun Skills.Drain(skillId: SkillId, flat: Int = 0, percent: Int = 0) = with(skill
     applyEffect()
 }
 
-fun List<SkillId>.restoreAll(flat: Int = 0, percent: Int = 0) = SkillEffect {
+fun Collection<SkillId>.restoreAll(flat: Int = 0, percent: Int = 0) = SkillEffect {
     forEach { skill -> Restore(skill, flat, percent) }
 }
-fun List<SkillId>.boostAll(flat: Int = 0, percent: Int = 0) = SkillEffect {
+fun Collection<SkillId>.boostAll(flat: Int = 0, percent: Int = 0) = SkillEffect {
     forEach { skill -> Boost(skill, flat, percent) }
 }
-fun List<SkillId>.drainAll(flat: Int = 0, percent: Int = 0) = SkillEffect {
+fun Collection<SkillId>.drainAll(flat: Int = 0, percent: Int = 0) = SkillEffect {
     forEach { skill -> Drain(skill, flat, percent) }
 }
 
@@ -125,3 +119,5 @@ fun SendOverload() = SkillEffect {
         if (ouchCount == 0) stop()
     }
 }
+
+operator fun SkillId.plus(other: SkillId): Set<SkillId> = setOf(this, other)
