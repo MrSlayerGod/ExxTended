@@ -1,7 +1,7 @@
 package org.dementhium.content.misc.drinking
 
 import org.dementhium.content.misc.ConsumableStages
-import org.dementhium.content.misc.SkillEffect
+import org.dementhium.content.misc.skillEffect.SkillEffect
 
 /** Drink is generally a consumable that leaves some sort of empty container when it is depleted **/
 class Drink(

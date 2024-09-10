@@ -1,5 +1,6 @@
 package org.dementhium.content.misc
 
+import org.dementhium.content.misc.skillEffect.SkillEffect
 import org.dementhium.model.World
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.Skills
