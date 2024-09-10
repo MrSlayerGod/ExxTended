@@ -1,7 +1,6 @@
 package org.dementhium.content.misc.skillEffect
 
 import org.dementhium.model.player.skills.Skills
-import org.dementhium.util.forEachScoped
 
 fun interface SkillEffect {
     fun Skills.applyEffect()
@@ -10,5 +9,10 @@ fun interface SkillEffect {
 
     companion object {
         val Inert = SkillEffect { }
+        fun from(byCollection: Collection<SkillEffect>) = when {
+            byCollection.isEmpty() -> SkillEffect.Inert
+            byCollection.size == 1 -> byCollection.first()
+            else -> MultiSkillEffect(byCollection)
+        }
     }
 }

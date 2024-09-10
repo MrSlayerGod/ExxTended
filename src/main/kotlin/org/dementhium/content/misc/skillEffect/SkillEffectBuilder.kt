@@ -46,11 +46,7 @@ class SkillEffectBuilder: GenericBuilder<SkillEffect>("SkillEffectBuilder") {
         if (hurt != 0) {
             skillEffects += SkillEffect { hit(hurt) }
         }
-        val toReturn = when {
-            skillEffects.isEmpty() -> SkillEffect.Inert
-            skillEffects.size == 1 -> skillEffects[0]
-            else -> MultiSkillEffect(skillEffects.toList())
-        }
+        val toReturn = SkillEffect.from(skillEffects)
         skillEffects.clear()
         return toReturn
     }
