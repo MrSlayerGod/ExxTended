@@ -20,31 +20,37 @@ interface ConsumableStages {
     operator fun contains(id: Int) = containsStage(id)
 }
 
-inline fun ConsumableIds(vararg ids: Int, depletionType: DepletionType) = if (ids.size > 1) {
-    ConsumableIds(ids.toList(), depletionType)
+fun ConsumableIds(vararg ids: Int, depletionType: DepletionType): ConsumableStages = if (ids.size > 1) {
+    ConsumableStagesImpl(ids.toList(), depletionType)
 } else {
-    ConsumableId(ids.first(), depletionType)
+    SingleConsumableStage(ids.first(), depletionType)
 }
 
-data class ConsumableIds(val doseIds: List<Int>, val depletionType: DepletionType): ConsumableStages {
+fun ConsumableIds(ids: List<Int>, depletionType: DepletionType): ConsumableStages = if (ids.size == 1) {
+    SingleConsumableStage(ids.first(), depletionType)
+} else {
+    ConsumableStagesImpl(ids, depletionType)
+}
 
-    override fun containsStage(id: Int): Boolean = id in doseIds
+private data class ConsumableStagesImpl(val ids: List<Int>, val depletionType: DepletionType): ConsumableStages {
+
+    override fun containsStage(id: Int): Boolean = id in ids
 
     override fun nextStageFromId(id: Int): ConsumableStatus {
         if (!containsStage(id)) return ConsumableStatus.IdNotContained
-        val nextStageIndex = doseIds.indexOf(id) + 1
-        val nextStageId = doseIds.getOrNull(nextStageIndex) ?: return ConsumableStatus.ConsumableDepleted(depletionType)
+        val nextStageIndex = ids.indexOf(id) - 1
+        val nextStageId = ids.getOrNull(nextStageIndex) ?: return ConsumableStatus.ConsumableDepleted(depletionType)
         return ConsumableStatus.ConsumableNotDepleted(nextStageId)
     }
 
 }
 
-class ConsumableId(val doseId: Int, val depletionType: DepletionType): ConsumableStages {
+private class SingleConsumableStage(val id: Int, val depletionType: DepletionType): ConsumableStages {
 
-    override fun containsStage(id: Int): Boolean = id == doseId
+    override fun containsStage(id: Int): Boolean = id == this.id
 
     override fun nextStageFromId(id: Int): ConsumableStatus {
-        if (id != doseId) return ConsumableStatus.IdNotContained
+        if (id != this.id) return ConsumableStatus.IdNotContained
         return ConsumableStatus.ConsumableDepleted(depletionType)
     }
 }
