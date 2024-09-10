@@ -1,6 +1,7 @@
 package org.dementhium.content.misc
 
 sealed interface DepletionType {
+    data object Keep: DepletionType
     data object Remove: DepletionType
     @JvmInline
     value class EmptyId(val id: Int): DepletionType
