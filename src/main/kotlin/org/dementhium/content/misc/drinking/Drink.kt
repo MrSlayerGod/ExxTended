@@ -4,7 +4,7 @@ import org.dementhium.content.misc.ConsumableStages
 import org.dementhium.content.misc.SkillEffect
 
 /** Drink is generally a consumable that leaves some sort of empty container when it is depleted **/
-sealed class Drink(
+class Drink(
     val consumableIds: ConsumableStages,
     val skillEffect: SkillEffect,
 ) {

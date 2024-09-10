@@ -4,10 +4,10 @@ import org.dementhium.content.misc.*
 import org.dementhium.content.misc.ConsumableIds
 import org.dementhium.util.ItemId
 
-sealed class Tea(
+fun Tea(
     ids: List<Int>,
     skillEffect: SkillEffect
-): Drink(
+) = Drink(
     consumableIds = ConsumableIds(
         ids,
         DepletionType.EmptyId(ItemId.EMPTY_CUP)
@@ -15,10 +15,10 @@ sealed class Tea(
     skillEffect = skillEffect
 )
 
-sealed class Vial(
+fun Vial(
     ids: List<Int>,
     skillEffect: SkillEffect
-): Drink(
+) = Drink(
     consumableIds = ConsumableIds(
         ids,
         DepletionType.EmptyId(ItemId.VIAL)
@@ -26,11 +26,11 @@ sealed class Vial(
     skillEffect = skillEffect
 )
 
-sealed class SingleDose(
+fun SingleDose(
     fullId: Int,
     skillEffect: SkillEffect,
     emptyId: Int
-): Drink(
+) = Drink(
     consumableIds = ConsumableIds(
         fullId,
         depletionType = DepletionType.EmptyId(emptyId)
@@ -38,39 +38,39 @@ sealed class SingleDose(
     skillEffect = skillEffect
 )
 
-sealed class Ale(
+fun Ale(
     aleId: Int,
     skillEffect: SkillEffect
-): SingleDose(
+) = SingleDose(
     fullId = aleId,
     skillEffect = skillEffect,
     emptyId = ItemId.BEER_GLASS
 )
 
-sealed class Keg(
+fun Keg(
     oneDoseKegId: Int,
-    ale: Ale
-): Drink(
+    mimics: Drink
+) = Drink(
     consumableIds = ConsumableIds(
         oneDoseKegId, oneDoseKegId + 2, oneDoseKegId + 4, oneDoseKegId + 6,
         depletionType = DepletionType.EmptyId(ItemId.CALQUAT_KEG)
     ),
-    skillEffect = ale.skillEffect
+    skillEffect = mimics.skillEffect
 )
 
-sealed class BarbarianMix(
+fun BarbarianMix(
     singleDoseId: Int,
     skillEffect: SkillEffect,
     heal: Int
-): Vial(
+) = Vial(
     ids = listOf(singleDoseId, singleDoseId - 2),
     skillEffect = skillEffect + HealBy(heal),
 )
 
-sealed class CastleWarsPotion(
+fun CastleWarsPotion(
     oneDoseId: Int,
     mimics: Drink
-): Drink(
+) = Drink(
     consumableIds = ConsumableIds(
         oneDoseId, oneDoseId - 1, oneDoseId - 2, oneDoseId - 3,
         depletionType = DepletionType.Remove
@@ -78,19 +78,19 @@ sealed class CastleWarsPotion(
     skillEffect = mimics.skillEffect
 )
 
-sealed class DungeoneeringPotion(
+fun DungeoneeringPotion(
     potionId: Int,
     skillEffect: SkillEffect
-): SingleDose(
+) = SingleDose(
     fullId = potionId,
     skillEffect = skillEffect,
     emptyId = ItemId.VIAL_17490
 )
 
-sealed class GnomeCocktail(
+fun GnomeCocktail(
     cocktailId: Int,
     skillEffect: SkillEffect
-): SingleDose(
+) = SingleDose(
     fullId = cocktailId,
     skillEffect = skillEffect,
     emptyId = ItemId.COCKTAIL_GLASS
