@@ -1,16 +1,11 @@
-package org.dementhium.content.misc
+package org.dementhium.content.misc.skillEffect
 
-import org.dementhium.content.misc.skillEffect.SkillEffect
 import org.dementhium.model.World
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.Skills
 import org.dementhium.util.math.percentOf
 import org.dementhium.util.submitTickable
 
-class BoostDrainContext(private val skills: Skills, private val skillId: SkillId) {
-    val currentLevel get() = with(skills) { skillId.currentLevel }
-    val maximumLevel get() = with(skills) { skillId.maximumLevel }
-}
 
 
 fun SkillId.Restore(
