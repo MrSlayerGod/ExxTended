@@ -56,9 +56,10 @@ class Skills(val player: Player) {
     }
 
     @JvmOverloads
-    fun heal(healValue: Int, maxHp: Int = if (this.hitPoints > maxHitpoints) maxHitpoints + 100 else maxHitpoints) {
+    fun heal(healValue: Int, maxHp: Int = maxHitpoints) {
         if (isDead) return
-        this.hitPoints = (this.hitPoints + healValue).coerceAtMost(maxHp)
+        val realMaxHp = max(maxHp, hitPoints)
+        this.hitPoints = (this.hitPoints + healValue).coerceAtMost(realMaxHp)
         sendHitpoints()
     }
 
