@@ -24,12 +24,8 @@ object Drinking {
         val slotItem = player.inventory[slot]
         val nextItem: Item = when(val nextStage = drink.consumableIds.nextStageFromId(slotItem.id)) {
             is ConsumableStatus.IdNotContained -> return
-            is ConsumableStatus.ConsumableDepleted -> when(val type = nextStage.depletionType) {
-                is DepletionType.EmptyId -> Item(type.id)
-                DepletionType.Keep -> slotItem
-                DepletionType.Remove -> Item(-1)
-            }
-            is ConsumableStatus.ConsumableNotDepleted -> Item(nextStage.id)
+            is ConsumableStatus.ConsumableDepleted -> nextStage.depletionType.item
+            is ConsumableStatus.ConsumableNotDepleted -> nextStage.item
         }
         player.setAttribute(potionSlurp, true)
         World.getWorld().submitTickable(potionDelay) {

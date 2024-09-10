@@ -10,7 +10,7 @@ fun Tea(
 ) = Drink(
     consumableIds = ConsumableIds(
         ids,
-        DepletionType.EmptyId(ItemId.EMPTY_CUP)
+        DepletionType.Empty(ItemId.EMPTY_CUP)
     ),
     skillEffect = skillEffect
 )
@@ -21,7 +21,7 @@ fun Vial(
 ) = Drink(
     consumableIds = ConsumableIds(
         ids,
-        DepletionType.EmptyId(ItemId.VIAL)
+        DepletionType.Empty(ItemId.VIAL)
     ),
     skillEffect = skillEffect
 )
@@ -33,7 +33,7 @@ fun SingleDose(
 ) = Drink(
     consumableIds = ConsumableIds(
         fullId,
-        depletionType = DepletionType.EmptyId(emptyId)
+        depletionType = DepletionType.Empty(emptyId)
     ),
     skillEffect = skillEffect
 )
@@ -53,7 +53,7 @@ fun Keg(
 ) = Drink(
     consumableIds = ConsumableIds(
         oneDoseKegId, oneDoseKegId + 2, oneDoseKegId + 4, oneDoseKegId + 6,
-        depletionType = DepletionType.EmptyId(ItemId.CALQUAT_KEG)
+        depletionType = DepletionType.Empty(ItemId.CALQUAT_KEG)
     ),
     skillEffect = mimics.skillEffect
 )
