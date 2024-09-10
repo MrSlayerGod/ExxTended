@@ -91,8 +91,6 @@ class Clan @JvmOverloads constructor (val owner: String = "", var name: String =
     }
 }
 
-
-
 fun Clan?.isValidClan() = this != null && this != NO_CLAN
 
 fun Clan?.isInvalidClan() = this == null || this == NO_CLAN
