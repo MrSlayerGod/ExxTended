@@ -1,6 +1,6 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.plus
+import org.dementhium.content.misc.*
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId
 
@@ -55,4 +55,8 @@ data object Whisky: SingleDose(
     ItemId.WHISKY,
     Vodka.skillEffect,
     emptyId = ItemId.EMPTY_WINE_BOTTLE
+)
+data object CupOfTea: Tea(
+    listOf(ItemId.CUP_OF_TEA_1978),
+    HealBy(30) + Attack.Boost(flat = 3)
 )
