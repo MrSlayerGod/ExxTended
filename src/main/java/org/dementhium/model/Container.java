@@ -39,6 +39,11 @@ public class Container {
 		}
 	}
 
+	private Item checkNull(Item item) {
+		if (item == null) return null;
+		return item.getId() < 0 ? null : item;
+	}
+
 	public Item get(int slot) {
 		if (slot < 0 || slot >= data.length) {
 			return null;
@@ -50,7 +55,7 @@ public class Container {
 		if (slot < 0 || slot >= data.length) {
 			return;
 		}
-		data[slot] = item;
+		data[slot] = checkNull(item);
 	}
 
 	public boolean forceAdd(Item item) {
@@ -63,7 +68,9 @@ public class Container {
 		return false;
 	}
 
-	public boolean add(Item item) {
+	public boolean add(Item itemToAdd) {
+		final Item item = checkNull(itemToAdd);
+		if (item == null) return false;
 		if (alwaysStackable || item.getDefinition().isStackable() || item.getDefinition().isNoted()) {
 			for (int i = 0; i < data.length; i++) {
 				if (data[i] != null) {
