@@ -40,7 +40,7 @@ sealed class Drink(
             Beer, BeerTankard, Cider, MatureCider, DwarvenStout, MatureDwarvenStout, AsgarnianAle, MatureAsgarnianAle,
             WizardMindBomb, MatureWizardMindBomb, DragonBitter, MatureDragonBitter, MoonlightMead, MatureMoonlightMead,
             AxemansFolly, MatureAxemansFolly, ChefsDelight, MatureChefsDelight, SlayersRespite, MatureSlayersRespite,
-            CiderKeg, MatureCiderKeg, StoutKeg, MatureStoutKeg, AsgarnianKeg, MatureStoutKeg,
+            CiderKeg, MatureCiderKeg, StoutKeg, MatureStoutKeg, AsgarnianKeg, MatureAsgarnianKeg,
             MindBombKeg, MatureMindBombKeg, DragonBitterKeg, MatureDragonBitterKeg, MoonlightMeadKeg, MatureMoonlightMeadKeg,
             AxemansFollyKeg, MatureAxemansFollyKeg, ChefsDelightKeg, MatureChefsDelightKeg, SlayersRespiteKeg, MatureSlayersRespiteKeg,
 
@@ -173,7 +173,6 @@ sealed class Drink(
             "StoutKeg" -> StoutKeg
             "MatureStoutKeg" -> MatureStoutKeg
             "AsgarnianKeg" -> AsgarnianKeg
-            "MatureStoutKeg" -> MatureStoutKeg
             "MindBombKeg" -> MindBombKeg
             "MatureMindBombKeg" -> MatureMindBombKeg
             "DragonBitterKeg" -> DragonBitterKeg
