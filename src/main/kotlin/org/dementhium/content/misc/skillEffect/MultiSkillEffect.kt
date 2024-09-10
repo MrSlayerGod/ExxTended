@@ -1,17 +1,7 @@
-package org.dementhium.content.misc
+package org.dementhium.content.misc.skillEffect
 
 import org.dementhium.model.player.skills.Skills
 import org.dementhium.util.forEachScoped
-
-fun interface SkillEffect {
-    fun Skills.applyEffect()
-
-    fun flatten(): SkillEffect = this
-
-    companion object {
-        val Inert = SkillEffect { }
-    }
-}
 
 class MultiSkillEffect(
     val skillEffects: List<SkillEffect>
@@ -29,9 +19,4 @@ class MultiSkillEffect(
         }
         return MultiSkillEffect(flattened)
     }
-}
-
-operator fun SkillEffect.plus(other: SkillEffect): SkillEffect {
-    if (other == SkillEffect.Inert || this == SkillEffect.Inert) return this
-    return MultiSkillEffect(this, other)
 }
