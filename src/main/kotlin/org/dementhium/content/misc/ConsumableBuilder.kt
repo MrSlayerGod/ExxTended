@@ -2,6 +2,7 @@ package org.dementhium.content.misc
 
 import org.dementhium.content.misc.skillEffect.SkillEffect
 import org.dementhium.content.misc.skillEffect.SkillEffectBuilder
+import org.dementhium.content.misc.skillEffect.buildSkillEffect
 import org.dementhium.util.builder.GenericBuilder
 import org.dementhium.util.findConstructorThatMatches
 import kotlin.reflect.*
@@ -28,6 +29,10 @@ class ConsumableBuilder<T: Consumable>(
         consumableIds = ids.toMutableList()
     }
 
+    fun consumableId(id: Int) = apply {
+        setConsumableIds(id)
+    }
+
     fun addConsumableIds(vararg ids: Int) = apply {
         ids.forEach(consumableIds::add)
     }
@@ -36,10 +41,7 @@ class ConsumableBuilder<T: Consumable>(
         skillEffects.add(effect)
     }
 
-    fun addEffect(builder: SkillEffectBuilder.() -> Unit) = apply {
-        val built = build<SkillEffect, SkillEffectBuilder>(builder)
-        addEffect(built)
-    }
+    fun addEffect(builder: SkillEffectBuilder.() -> Unit) = addEffect(buildSkillEffect(builder))
 
     fun addEffects(effects: List<SkillEffect>) = apply {
         effects.forEach(::addEffect)
