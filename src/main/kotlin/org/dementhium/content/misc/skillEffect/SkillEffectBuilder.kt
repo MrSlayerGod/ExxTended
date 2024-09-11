@@ -14,15 +14,17 @@ class SkillEffectBuilder: GenericBuilder<SkillEffect>("SkillEffectBuilder") {
     private val skillEffects: MutableList<SkillEffect> = mutableListOf()
 
 
-    fun hurt(newHurt: Int, percent: Int = 0) = apply {
+    fun hurt(newHurt: Int = 0, percent: Int = 0, floor: Int = 0) = apply {
         val effect = skillEffect {
             val hurtValue = (percent percentOf maxHitpoints) + newHurt
-            hit(hurtValue)
+            hit(hurtValue, floor)
         }
         addEffect(effect)
     }
 
-    fun heal(newHeal: Int, percent: Int = 0, healType: HealType = HealType.DoesntOverheal) = apply {
+    fun sendMessage(string: String) = addEffect(SkillEffect { player.sendMessage(string) })
+
+    fun heal(newHeal: Int = 0, percent: Int = 0, healType: HealType = HealType.DoesntOverheal) = apply {
         val effect = skillEffect {
             val healValue = (percent percentOf maxHitpoints) + newHeal
             heal(
@@ -37,7 +39,7 @@ class SkillEffectBuilder: GenericBuilder<SkillEffect>("SkillEffectBuilder") {
         addEffect(effect)
     }
 
-    fun overheal(newHeal: Int, percent: Int = 0) = heal(newHeal, percent, HealType.Overheals)
+    fun overheal(newHeal: Int = 0, percent: Int = 0) = heal(newHeal, percent, HealType.Overheals)
 
     fun addEffect(skillEffect: SkillEffect) = apply { skillEffects.add(skillEffect) }
 
@@ -46,7 +48,15 @@ class SkillEffectBuilder: GenericBuilder<SkillEffect>("SkillEffectBuilder") {
     fun SkillId.boost(flat: Int = 0, percent: Int = 0) = addEffect(boost(this, flat, percent))
     fun SkillId.drain(flat: Int = 0, percent: Int = 0) = addEffect(drain(this, flat, percent))
     fun SkillId.restore(flat: Int = 0, percent: Int = 0) = addEffect(restore(this, flat, percent))
-
+    fun Collection<SkillId>.boost(flat: Int = 0, percent: Int = 0) = apply {
+        forEach { it.boost(flat, percent) }
+    }
+    fun Collection<SkillId>.drain(flat: Int = 0, percent: Int = 0) = apply {
+        forEach { it.drain(flat, percent) }
+    }
+    fun Collection<SkillId>.restore(flat: Int = 0, percent: Int = 0) = apply {
+        forEach { it.restore(flat, percent) }
+    }
     override fun build(): SkillEffect {
         val toReturn = SkillEffect.from(skillEffects)
         skillEffects.clear()
