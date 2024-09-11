@@ -14,19 +14,19 @@ private val CaviarHeal = 60
 
 val AttackMix = BarbarianMix(
     ItemId.ATTACK_MIX_1,
-    AttackPotion.skillEffect, RoeHeal
+    AttackPotion, RoeHeal
 )
 val AntipoisonMix = BarbarianMix(
     ItemId.ANTIPOISON_MIX_1,
-    AntiPoison.skillEffect, RoeHeal
+    AntiPoison, RoeHeal
 )
 val RelicymMix = BarbarianMix(
     ItemId.RELICYMS_MIX_1,
-    RelicymBalm.skillEffect, RoeHeal
+    RelicymBalm, RoeHeal
 )
 val StrengthMix = BarbarianMix(
     ItemId.STRENGTH_MIX_1,
-    StrengthPotion.skillEffect, RoeHeal
+    StrengthPotion, RoeHeal
 )
 val StatRestoreMix = BarbarianMix(
     ItemId.RESTORE_MIX_1,
@@ -38,73 +38,73 @@ val EnergyMix = BarbarianMix(
 )
 val DefenceMix = BarbarianMix(
     ItemId.DEFENCE_MIX_1,
-    DefencePotion.skillEffect, CaviarHeal
+    DefencePotion, CaviarHeal
 )
 val AgilityMix = BarbarianMix(
     ItemId.AGILITY_MIX_1,
-    AgilityPotion.skillEffect, CaviarHeal
+    AgilityPotion, CaviarHeal
 )
 val CombatMix = BarbarianMix(
     ItemId.COMBAT_MIX_1,
-    CombatPotion.skillEffect, CaviarHeal
+    CombatPotion, CaviarHeal
 )
 val PrayerMix = BarbarianMix(
     ItemId.PRAYER_MIX_1,
-    PrayerPotion.skillEffect, CaviarHeal
+    PrayerPotion, CaviarHeal
 )
 val SuperAttackMix = BarbarianMix(
     ItemId.SUPERATTACK_MIX_1,
-    SuperAttackPotion.skillEffect, CaviarHeal
+    SuperAttackPotion, CaviarHeal
 )
 val SuperAntiPoisonMix = BarbarianMix(
     ItemId.ANTI_P_SUPERMIX_1,
-    SuperAntipoison.skillEffect, CaviarHeal
+    SuperAntipoison, CaviarHeal
 )
 val FishingMix = BarbarianMix(
     ItemId.FISHING_MIX_1,
-    FishingPotion.skillEffect, CaviarHeal
+    FishingPotion, CaviarHeal
 )
 val SuperEnergyMix = BarbarianMix(
     ItemId.SUP_ENERGY_MIX_1,
-    EnergyPotion.skillEffect, CaviarHeal
+    EnergyPotion, CaviarHeal
 )
 val HuntingMix = BarbarianMix(
     ItemId.HUNTING_MIX_1,
-    HuntingPotion.skillEffect, CaviarHeal
+    HuntingPotion, CaviarHeal
 )
 val SuperStrengthMix = BarbarianMix(
     ItemId.SUP_STR_MIX_1,
-    SuperStrengthPotion.skillEffect, CaviarHeal
+    SuperStrengthPotion, CaviarHeal
 )
 val MagicEssenceMix = BarbarianMix(
     ItemId.MAGIC_ESS_MIX_1,
-    MagicEssence.skillEffect, CaviarHeal
+    MagicEssence, CaviarHeal
 )
 val SuperRestoreMix = BarbarianMix(
     ItemId.SUP_RESTORE_MIX_1,
-    SuperRestorePotion.skillEffect, CaviarHeal
+    SuperRestorePotion, CaviarHeal
 )
 val SuperDefenceMix = BarbarianMix(
     ItemId.SUP_DEF_MIX_1,
-    SuperDefencePotion.skillEffect, CaviarHeal
+    SuperDefencePotion, CaviarHeal
 )
 val ExtraStrongAntiPoisonMix = BarbarianMix(
     ItemId.ANTIDOTEP_MIX_1,
-    SuperAntipoison.skillEffect, CaviarHeal
+    SuperAntipoison, CaviarHeal
 )
 val AntifireMix = BarbarianMix(
     ItemId.ANTIFIRE_MIX_1,
-    AntifirePotion.skillEffect, CaviarHeal
+    AntifirePotion, CaviarHeal
 )
 val RangingMix = BarbarianMix(
     ItemId.RANGING_MIX_1,
-    RangePotion.skillEffect, CaviarHeal
+    RangePotion, CaviarHeal
 )
 val MagicMix = BarbarianMix(
     ItemId.MAGIC_MIX_1,
-    MagicPotion.skillEffect, CaviarHeal
+    MagicPotion, CaviarHeal
 )
 val ZamorakMix = BarbarianMix(
     ItemId.ZAMORAK_MIX_1,
-    ZamorakBrew.skillEffect, CaviarHeal
+    ZamorakBrew, CaviarHeal
 )

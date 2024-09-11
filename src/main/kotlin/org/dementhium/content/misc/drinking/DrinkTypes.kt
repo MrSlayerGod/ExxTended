@@ -2,9 +2,7 @@ package org.dementhium.content.misc.drinking
 
 import org.dementhium.content.misc.*
 import org.dementhium.content.misc.ConsumableIds
-import org.dementhium.content.misc.skillEffect.HealBy
-import org.dementhium.content.misc.skillEffect.SkillEffect
-import org.dementhium.content.misc.skillEffect.plus
+import org.dementhium.content.misc.skillEffect.*
 import org.dementhium.util.ItemId
 
 fun Tea(
@@ -16,6 +14,11 @@ fun Tea(
     addEffect(skillEffect)
 }
 
+fun Tea(
+    ids: List<Int>,
+    skillEffect: SkillEffectBuilder.() -> Unit
+) = Tea(ids, buildSkillEffect(skillEffect))
+
 fun Vial(
     ids: List<Int>,
     skillEffect: SkillEffect
@@ -24,6 +27,11 @@ fun Vial(
     depletionType(DepletionType.Empty(ItemId.VIAL))
     addEffect(skillEffect)
 }
+
+fun Vial(
+    ids: List<Int>,
+    skillEffect: SkillEffectBuilder.() -> Unit
+) = Vial(ids, buildSkillEffect(skillEffect))
 
 
 fun SingleDose(
@@ -36,6 +44,12 @@ fun SingleDose(
     addEffect(skillEffect)
 }
 
+fun SingleDose(
+    fullId: Int,
+    emptyId: Int,
+    skillEffect: SkillEffectBuilder.() -> Unit
+) = SingleDose(fullId, buildSkillEffect(skillEffect), emptyId)
+
 fun Ale(
     aleId: Int,
     skillEffect: SkillEffect
@@ -45,9 +59,14 @@ fun Ale(
     addEffect(skillEffect)
 }
 
+fun Ale(
+    aleId: Int,
+    skillEffect: SkillEffectBuilder.() -> Unit
+) = Ale(aleId, buildSkillEffect(skillEffect))
+
 fun Keg(
     oneDoseKegId: Int,
-    mimics: Drink
+    mimics: Consumable
 ) = buildConsumable<Drink> {
     setConsumableIds(oneDoseKegId, oneDoseKegId + 2, oneDoseKegId + 4, oneDoseKegId + 6)
     depletionType(DepletionType.Empty(ItemId.CALQUAT_KEG))
@@ -61,6 +80,14 @@ fun BarbarianMix(
 ) = Vial(
     ids = listOf(singleDoseId, singleDoseId - 2),
     skillEffect = skillEffect + HealBy(heal),
+)
+fun BarbarianMix(
+    singleDoseId: Int,
+    mimics: Consumable,
+    heal: Int
+) = Vial(
+    ids = listOf(singleDoseId, singleDoseId - 2),
+    skillEffect = mimics.skillEffect + HealBy(heal),
 )
 
 fun CastleWarsPotion(
@@ -87,5 +114,14 @@ fun GnomeCocktail(
 ) = SingleDose(
     fullId = cocktailId,
     skillEffect = skillEffect,
+    emptyId = ItemId.COCKTAIL_GLASS
+)
+
+fun GnomeCocktail(
+    cocktailId: Int,
+    builder: SkillEffectBuilder.() -> Unit
+) = SingleDose(
+    fullId = cocktailId,
+    skillEffect = buildSkillEffect(builder),
     emptyId = ItemId.COCKTAIL_GLASS
 )

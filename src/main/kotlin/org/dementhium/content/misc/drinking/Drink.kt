@@ -38,15 +38,17 @@ class Drink(
             FishingMix, SuperEnergyMix, HuntingMix, SuperStrengthMix, MagicEssenceMix, SuperRestoreMix,
             SuperDefenceMix, ExtraStrongAntiPoisonMix, AntifireMix, RangingMix, MagicMix, ZamorakMix,
 
-            Beer, BeerTankard, Cider, MatureCider, DwarvenStout, MatureDwarvenStout, AsgarnianAle, MatureAsgarnianAle,
+            Beer, Grog, BeerTankard, BanditsBrew, Cider, MatureCider, DwarvenStout, MatureDwarvenStout, AsgarnianAle, MatureAsgarnianAle,
             WizardMindBomb, MatureWizardMindBomb, DragonBitter, MatureDragonBitter, MoonlightMead, MatureMoonlightMead,
             AxemansFolly, MatureAxemansFolly, ChefsDelight, MatureChefsDelight, SlayersRespite, MatureSlayersRespite,
             CiderKeg, MatureCiderKeg, StoutKeg, MatureStoutKeg, AsgarnianKeg, MatureAsgarnianKeg,
             MindBombKeg, MatureMindBombKeg, DragonBitterKeg, MatureDragonBitterKeg, MoonlightMeadKeg, MatureMoonlightMeadKeg,
             AxemansFollyKeg, MatureAxemansFollyKeg, ChefsDelightKeg, MatureChefsDelightKeg, SlayersRespiteKeg, MatureSlayersRespiteKeg,
 
+            WinterSqirkJuice, SpringSqirkJuice, AutumnSqirkJuice, SummerSqirkJuice,
+
             BottleOfWine, Brandy, BraindeathRum, Gin, HalfFullWine, JugOfWine, KarmajaRum, BeerKeg, Vodka, Whisky,
-            CupOfTea, PoisonChalice,
+            CupOfTea, PoisonChalice, NettleTea, ChocoMilk,
 
             FruitBlast, PineapplePunch, WizardBlizzard, ShortGreenGuy, DrunkDragon, ChocSaturday, BlurberrySpecial,
 

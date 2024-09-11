@@ -1,22 +1,25 @@
 package org.dementhium.content.misc.drinking
 
 import org.dementhium.content.misc.skillEffect.*
+import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId
 
+fun SkillId.basicBoost() = boost(this, flat = 3, percent = 10)
+
 val AttackPotion = Vial(
     listOf(ItemId.ATTACK_POTION_1, ItemId.ATTACK_POTION_2, ItemId.ATTACK_POTION_3, ItemId.ATTACK_POTION_4),
-    Tier1Stat(Attack)
+    Attack.basicBoost()
 )
 
 val DefencePotion = Vial(
     listOf(ItemId.DEFENCE_POTION_1, ItemId.DEFENCE_POTION_2, ItemId.DEFENCE_POTION_3, ItemId.DEFENCE_POTION_4),
-    Tier1Stat(Defence)
+    Defence.basicBoost()
 )
 
 val StrengthPotion = Vial(
     listOf(ItemId.STRENGTH_POTION_1, ItemId.STRENGTH_POTION_2, ItemId.STRENGTH_POTION_3, ItemId.STRENGTH_POTION_4),
-    Tier1Stat(Strength)
+    Strength.basicBoost()
 )
 
 val MagicPotion = Vial(
@@ -31,7 +34,10 @@ val RangePotion = Vial(
 
 val CombatPotion = Vial(
     listOf(ItemId.COMBAT_POTION_1, ItemId.COMBAT_POTION_2, ItemId.COMBAT_POTION_3, ItemId.COMBAT_POTION_4),
-    AttackPotion.skillEffect + StrengthPotion.skillEffect
+    buildSkillEffect{
+        addEffect(AttackPotion.skillEffect)
+        addEffect(StrengthPotion.skillEffect)
+    }
 )
 
 val PrayerPotion = Vial(

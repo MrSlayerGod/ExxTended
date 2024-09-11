@@ -1,26 +1,25 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.skillEffect.Restore
-import org.dementhium.content.misc.skillEffect.RestoreEnergy
-import org.dementhium.content.misc.skillEffect.SuperRestore
-import org.dementhium.content.misc.skillEffect.Tier2Stat
+import org.dementhium.content.misc.skillEffect.*
+import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId
 
+fun SkillId.superBoost() = boost(this, flat = 5, percent = 15)
 
 val SuperAttackPotion = Vial(
     listOf(ItemId.SUPER_ATTACK_1, ItemId.SUPER_ATTACK_2, ItemId.SUPER_ATTACK_3, ItemId.SUPER_ATTACK_4),
-    Tier2Stat(Attack)
+    Attack.superBoost()
 )
 
 val SuperDefencePotion = Vial(
     listOf(ItemId.SUPER_DEFENCE_1, ItemId.SUPER_DEFENCE_2, ItemId.SUPER_DEFENCE_3, ItemId.SUPER_DEFENCE_4),
-    Tier2Stat(Defence)
+    Defence.superBoost()
 )
 
 val SuperStrengthPotion = Vial(
     listOf(ItemId.SUPER_STRENGTH_1, ItemId.SUPER_STRENGTH_2, ItemId.SUPER_STRENGTH_3, ItemId.SUPER_STRENGTH_4),
-    Tier2Stat(Strength)
+    Strength.superBoost()
 )
 
 val SuperRestorePotion = Vial(

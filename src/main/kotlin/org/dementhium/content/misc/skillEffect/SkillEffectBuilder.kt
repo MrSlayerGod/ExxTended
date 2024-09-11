@@ -45,9 +45,13 @@ class SkillEffectBuilder: GenericBuilder<SkillEffect>("SkillEffectBuilder") {
 
     fun addEffect(builder: SkillEffectBuilder.() -> Unit) = addEffect(buildSkillEffect(builder))
 
+    fun SkillId.drainBy(calculateDrain: BoostDrainContext.() -> Int) = addEffect(drainBy(this, calculateDrain))
+    fun SkillId.boostBy(calculateDrain: BoostDrainContext.() -> Int) = addEffect(boostBy(this, calculateDrain))
+    fun SkillId.restoreBy(calculateDrain: BoostDrainContext.() -> Int) = addEffect(restoreBy(this, calculateDrain))
     fun SkillId.boost(flat: Int = 0, percent: Int = 0) = addEffect(boost(this, flat, percent))
     fun SkillId.drain(flat: Int = 0, percent: Int = 0) = addEffect(drain(this, flat, percent))
     fun SkillId.restore(flat: Int = 0, percent: Int = 0) = addEffect(restore(this, flat, percent))
+
     fun Collection<SkillId>.boost(flat: Int = 0, percent: Int = 0) = apply {
         forEach { it.boost(flat, percent) }
     }
@@ -57,6 +61,7 @@ class SkillEffectBuilder: GenericBuilder<SkillEffect>("SkillEffectBuilder") {
     fun Collection<SkillId>.restore(flat: Int = 0, percent: Int = 0) = apply {
         forEach { it.restore(flat, percent) }
     }
+
     override fun build(): SkillEffect {
         val toReturn = SkillEffect.from(skillEffects)
         skillEffects.clear()

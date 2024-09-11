@@ -8,56 +8,90 @@ private val ciderDrains = listOf(Attack, Strength)
 private val stoutBoosts = listOf(Mining, Smithing)
 private val stoutDrains = ciderDrains + Defence
 
-val Beer = Ale(
-    ItemId.BEER,
-    HealBy(10) + Strength.Boost(flat = 1, percent = 2) + Attack.Drain(flat = 1, percent = 6)
-)
-val BeerTankard = SingleDose(
-    ItemId.BEER_3803,
-    HealBy(40) + Strength.Boost(flat = 2, percent = 4) + Attack.Drain(flat = 1, percent = 2),
-    emptyId = ItemId.TANKARD
-)
+val Beer = Ale(ItemId.BEER) {
+    heal(10)
+    Strength.boost(flat = 1, percent = 2)
+    Attack.drain(flat = 1, percent = 6)
+}
 
-val Cider = Ale(
-    ItemId.CIDER,
-    HealBy(20) + Farming.Boost(flat = 1) + ciderDrains.drainAll(flat = 2)
-)
-val MatureCider = Ale(
-    ItemId.MATURE_CIDER,
-    HealBy(20) + Farming.Boost(flat = 2) + ciderDrains.drainAll(flat = 3)
-)
-val DwarvenStout = Ale(
-    ItemId.DWARVEN_STOUT,
-    HealBy(10) + stoutBoosts.boostAll(flat = 1) + stoutDrains.drainAll(flat = 1)
-)
-val MatureDwarvenStout = Ale(
-    ItemId.DWARVEN_STOUT_M,
-    HealBy(10) + stoutBoosts.boostAll(flat = 2) + stoutDrains.drainAll(flat = 2)
-)
-val AsgarnianAle = Ale(
-    ItemId.ASGARNIAN_ALE,
-    HealBy(20) + Strength.Boost(flat = 2) + Attack.Drain(flat = 4)
-)
-val MatureAsgarnianAle = Ale(
-    ItemId.ASGARNIAN_ALE_M,
-    HealBy(20) + Strength.Boost(flat = 3) + Attack.Drain(flat = 5)
-)
-val WizardMindBomb = Ale(
-    ItemId.WIZARDS_MIND_BOMB,
-    HealBy(10) + Magic.Boost(flat = 2, percent = 2) + Attack.Drain(flat = 4) + Strength.Drain(flat = 3) + Defence.Drain(flat = 3)
-)
-val MatureWizardMindBomb = Ale(
-    ItemId.MATURE_WMB,
-    HealBy(10) + Magic.Boost(flat = 3, percent = 3) + Attack.Drain(flat = 5) + Strength.Drain(flat = 4) + Defence.Drain(flat = 4)
-)
-val DragonBitter = Ale(
-    ItemId.DRAGON_BITTER,
-    HealBy(10) + Strength.Boost(2) + Attack.Drain(1)
-)
-val MatureDragonBitter = Ale(
-    ItemId.DRAGON_BITTER_M,
-    HealBy(10) + Strength.Boost(3) + Attack.Drain(2)
-)
+val Grog = Ale(ItemId.GROG) {
+    heal(30)
+    Strength.boost(flat = 3)
+    Attack.drain(flat = 6)
+}
+
+val BanditsBrew = Ale(ItemId.BANDITS_BREW) {
+    Thieving.boost(flat = 1)
+    Attack.boost(flat = 1)
+    Strength.drain(flat = 1)
+    Defence.drain(flat = 6)
+}
+
+val BeerTankard = SingleDose(ItemId.BEER_3803, emptyId = ItemId.TANKARD) {
+    heal(40)
+    Strength.boost(flat = 2, percent = 4)
+    Attack.drain(flat = 1, percent = 2)
+}
+
+val Cider = Ale(ItemId.CIDER) {
+    heal(20)
+    Farming.boost(flat = 1)
+    ciderDrains.drain(flat = 2)
+}
+val MatureCider = Ale(ItemId.MATURE_CIDER) {
+    heal(20)
+    Farming.boost(flat = 2)
+    ciderDrains.drain(flat = 3)
+}
+
+val DwarvenStout = Ale(ItemId.DWARVEN_STOUT) {
+    heal(10)
+    stoutBoosts.boost(flat = 1)
+    stoutDrains.drain(flat = 1)
+}
+val MatureDwarvenStout = Ale(ItemId.DWARVEN_STOUT_M) {
+    heal(10)
+    stoutBoosts.boost(flat = 2)
+    stoutDrains.drain(flat = 2)
+}
+
+val AsgarnianAle = Ale(ItemId.ASGARNIAN_ALE) {
+    heal(20)
+    Strength.boost(flat = 2)
+    Attack.drain(flat = 4)
+}
+val MatureAsgarnianAle = Ale(ItemId.ASGARNIAN_ALE_M) {
+    heal(20)
+    Strength.boost(flat = 3)
+    Attack.drain(flat = 5)
+}
+
+val WizardMindBomb = Ale(ItemId.WIZARDS_MIND_BOMB) {
+    heal(10)
+    Magic.boost(flat = 2, percent = 2)
+    Attack.drain(flat = 4)
+    Strength.drain(flat = 3)
+    Defence.drain(flat = 3)
+}
+val MatureWizardMindBomb = Ale(ItemId.MATURE_WMB) {
+    heal(10)
+    Magic.boost(flat = 3, percent = 3)
+    Attack.drain(flat = 5)
+    Strength.drain(flat = 4)
+    Defence.drain(flat = 4)
+}
+
+val DragonBitter = Ale(ItemId.DRAGON_BITTER) {
+    heal(10)
+    Strength.boost(2)
+    Attack.drain(1)
+}
+val MatureDragonBitter = Ale(ItemId.DRAGON_BITTER_M) {
+    heal(10)
+    Strength.boost(3)
+    Attack.drain(2)
+}
+
 val MoonlightMead = Ale(
     ItemId.MOONLIGHT_MEAD,
     HealBy(50)
@@ -66,30 +100,34 @@ val MatureMoonlightMead = Ale(
     ItemId.MOONLIGHT_MEAD_M,
     HealBy(60)
 )
-val AxemansFolly = Ale(
-    ItemId.AXEMANS_FOLLY,
-    Woodcutting.Boost(flat=1) + Strength.Drain(flat = 3)
-)
-val MatureAxemansFolly = Ale(
-    ItemId.AXEMANS_FOLLY,
-    Woodcutting.Boost(flat=2) + Strength.Drain(flat = 4)
-)
-val ChefsDelight = Ale(
-    ItemId.CHEFS_DELIGHT,
-    Cooking.Boost(flat = 1, percent = 5) + ciderDrains.drainAll(flat =  2)
-)
-val MatureChefsDelight = Ale(
-    ItemId.CHEFS_DELIGHT_M,
-    Cooking.Boost(flat = 2, percent = 5) + ciderDrains.drainAll(flat =  3)
-)
-val SlayersRespite = Ale(
-    ItemId.SLAYERS_RESPITE,
-    Slayer.Boost(flat = 1) + ciderDrains.drainAll(flat = 2)
-)
-val MatureSlayersRespite = Ale(
-    ItemId.SLAYERS_RESPITE,
-    Slayer.Boost(flat = 2) + ciderDrains.drainAll(flat = 3)
-)
+
+val AxemansFolly = Ale(ItemId.AXEMANS_FOLLY) {
+    Woodcutting.boost(flat = 1)
+    Strength.boost(flat = 3)
+}
+val MatureAxemansFolly = Ale(ItemId.AXEMANS_FOLLY) {
+    Woodcutting.boost(flat = 2)
+    Strength.drain(flat = 4)
+}
+
+val ChefsDelight = Ale(ItemId.CHEFS_DELIGHT) {
+    Cooking.boost(flat = 1, percent = 5)
+    ciderDrains.drain(flat = 2)
+}
+val MatureChefsDelight = Ale(ItemId.CHEFS_DELIGHT_M) {
+    Cooking.boost(flat = 2, percent = 5)
+    ciderDrains.drain(flat = 3)
+}
+
+val SlayersRespite = Ale(ItemId.SLAYERS_RESPITE) {
+    Slayer.boost(flat = 1)
+    ciderDrains.drain(flat = 2)
+}
+val MatureSlayersRespite = Ale(ItemId.SLAYERS_RESPITE) {
+    Slayer.boost(flat = 2)
+    ciderDrains.drain(flat = 3)
+}
+
 val CiderKeg = Keg(ItemId.CIDER_1, Cider)
 val MatureCiderKeg = Keg(ItemId.CIDER_M1, MatureCider)
 val StoutKeg = Keg(ItemId.DWARVEN_STOUT_1, DwarvenStout)
