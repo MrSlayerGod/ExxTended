@@ -50,6 +50,7 @@ kotlin {
         freeCompilerArgs = listOf(
             "-Xopt-in=kotlin.RequiresOptIn",
             "-Xjvm-default=all",
+            "-Xcontext-receivers"
         )
     }
 }
