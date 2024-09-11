@@ -8,7 +8,7 @@ private val consumableClassParam: KParameter =
 
 fun <T: Consumable> buildConsumable(consumableClass: KClass<T>, block: ConsumableBuilder<T>.() -> Unit): T {
     val args = mapOf(consumableClassParam to consumableClass)
-    return org.dementhium.util.builder.build<T, ConsumableBuilder<T>>(block, byArgs = args)
+    return org.dementhium.util.builder.build<T, ConsumableBuilder<T>>(args, block)
 }
 
 inline fun <reified T: Consumable> buildConsumable(

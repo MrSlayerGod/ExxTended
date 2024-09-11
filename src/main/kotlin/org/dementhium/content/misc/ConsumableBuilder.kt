@@ -3,7 +3,6 @@ package org.dementhium.content.misc
 import org.dementhium.content.misc.skillEffect.SkillEffect
 import org.dementhium.content.misc.skillEffect.SkillEffectBuilder
 import org.dementhium.util.builder.GenericBuilder
-import org.dementhium.util.builder.build
 import org.dementhium.util.findConstructorThatMatches
 import kotlin.reflect.*
 
