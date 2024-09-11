@@ -1,13 +1,14 @@
 package org.dementhium.content.misc.drinking
 
+import org.dementhium.content.misc.Consumable
 import org.dementhium.content.misc.ConsumableStages
 import org.dementhium.content.misc.skillEffect.SkillEffect
 
 /** Drink is generally a consumable that leaves some sort of empty container when it is depleted **/
 class Drink(
-    val consumableIds: ConsumableStages,
-    val skillEffect: SkillEffect,
-) {
+    consumableIds: ConsumableStages,
+    skillEffect: SkillEffect,
+): Consumable(consumableIds, skillEffect) {
 
     companion object {
         fun values(): Array<Drink> = arrayOf(

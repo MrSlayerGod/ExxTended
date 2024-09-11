@@ -3,7 +3,7 @@ package org.dementhium.content.misc
 import org.dementhium.content.misc.skillEffect.SkillEffect
 import kotlin.reflect.KClass
 
-sealed class Consumable(
+abstract class Consumable(
     val consumableIds: ConsumableStages,
     val skillEffect: SkillEffect
 ) {
@@ -19,4 +19,6 @@ sealed class Consumable(
             foundConsumables.add(consumable)
         }
     }
+
+    override fun toString() = "Consumable($consumableIds, $skillEffect)"
 }
