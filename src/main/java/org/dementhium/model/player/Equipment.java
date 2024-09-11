@@ -7,6 +7,7 @@ import org.dementhium.model.combat.Combat.CombatType;
 import org.dementhium.model.definition.ItemDefinition;
 import org.dementhium.model.definition.WeaponInterface;
 import org.dementhium.model.definition.WeaponInterface.WeaponButton;
+import org.dementhium.model.player.skills.Skills;
 import org.dementhium.net.ActionSender;
 import org.dementhium.event.Tickable;
 import org.dementhium.model.World;
