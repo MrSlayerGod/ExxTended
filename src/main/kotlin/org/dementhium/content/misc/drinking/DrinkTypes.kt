@@ -2,6 +2,7 @@ package org.dementhium.content.misc.drinking
 
 import org.dementhium.content.misc.*
 import org.dementhium.content.misc.ConsumableIds
+import org.dementhium.content.misc.skillEffect.HealBy
 import org.dementhium.content.misc.skillEffect.SkillEffect
 import org.dementhium.content.misc.skillEffect.plus
 import org.dementhium.util.ItemId
@@ -9,56 +10,49 @@ import org.dementhium.util.ItemId
 fun Tea(
     ids: List<Int>,
     skillEffect: SkillEffect
-) = Drink(
-    consumableIds = ConsumableIds(
-        ids,
-        DepletionType.Empty(ItemId.EMPTY_CUP)
-    ),
-    skillEffect = skillEffect
-)
+) = buildConsumable<Drink> {
+    setConsumableIds(ids)
+    depletionType(DepletionType.Empty(ItemId.EMPTY_CUP))
+    addEffect(skillEffect)
+}
 
 fun Vial(
     ids: List<Int>,
     skillEffect: SkillEffect
-) = Drink(
-    consumableIds = ConsumableIds(
-        ids,
-        DepletionType.Empty(ItemId.VIAL)
-    ),
-    skillEffect = skillEffect
-)
+) = buildConsumable<Drink> {
+    setConsumableIds(ids)
+    depletionType(DepletionType.Empty(ItemId.VIAL))
+    addEffect(skillEffect)
+}
+
 
 fun SingleDose(
     fullId: Int,
     skillEffect: SkillEffect,
     emptyId: Int
-) = Drink(
-    consumableIds = ConsumableIds(
-        fullId,
-        depletionType = DepletionType.Empty(emptyId)
-    ),
-    skillEffect = skillEffect
-)
+) = buildConsumable<Drink> {
+    consumableId(fullId)
+    depletionType(DepletionType.Empty(emptyId))
+    addEffect(skillEffect)
+}
 
 fun Ale(
     aleId: Int,
     skillEffect: SkillEffect
-) = SingleDose(
-    fullId = aleId,
-    skillEffect = skillEffect,
-    emptyId = ItemId.BEER_GLASS
-)
+) = buildConsumable<Drink> {
+    consumableId(aleId)
+    depletionType(DepletionType.Empty(ItemId.BEER_GLASS))
+    addEffect(skillEffect)
+}
 
 fun Keg(
     oneDoseKegId: Int,
     mimics: Drink
-) = Drink(
-    consumableIds = ConsumableIds(
-        oneDoseKegId, oneDoseKegId + 2, oneDoseKegId + 4, oneDoseKegId + 6,
-        depletionType = DepletionType.Empty(ItemId.CALQUAT_KEG)
-    ),
-    skillEffect = mimics.skillEffect
-)
+) = buildConsumable<Drink> {
+    setConsumableIds(oneDoseKegId, oneDoseKegId + 2, oneDoseKegId + 4, oneDoseKegId + 6)
+    depletionType(DepletionType.Empty(ItemId.CALQUAT_KEG))
+    addEffect(mimics.skillEffect)
+}
 
 fun BarbarianMix(
     singleDoseId: Int,
@@ -72,13 +66,11 @@ fun BarbarianMix(
 fun CastleWarsPotion(
     oneDoseId: Int,
     mimics: Drink
-) = Drink(
-    consumableIds = ConsumableIds(
-        oneDoseId, oneDoseId - 1, oneDoseId - 2, oneDoseId - 3,
-        depletionType = DepletionType.Remove
-    ),
-    skillEffect = mimics.skillEffect
-)
+) = buildConsumable<Drink>{
+    setConsumableIds(oneDoseId, oneDoseId - 1, oneDoseId - 2, oneDoseId - 3)
+    depletionType(DepletionType.Remove)
+    addEffect(mimics.skillEffect)
+}
 
 fun DungeoneeringPotion(
     potionId: Int,
