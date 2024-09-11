@@ -21,7 +21,7 @@ class SimpleWeightedTable<T>(
 
     fun roll(modifier: Double = 1.0): T {
         var pickedWeight = weightRange.random()
-        combiSorted.keys.forEachIndexed { index, weight ->
+        combiSorted.keys.forEach { weight ->
             pickedWeight -= weight
             if(pickedWeight <= 0) {
                 val items = combiSorted[weight]!!
