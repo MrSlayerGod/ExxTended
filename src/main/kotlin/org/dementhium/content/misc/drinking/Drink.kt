@@ -45,7 +45,8 @@ class Drink(
             MindBombKeg, MatureMindBombKeg, DragonBitterKeg, MatureDragonBitterKeg, MoonlightMeadKeg, MatureMoonlightMeadKeg,
             AxemansFollyKeg, MatureAxemansFollyKeg, ChefsDelightKeg, MatureChefsDelightKeg, SlayersRespiteKeg, MatureSlayersRespiteKeg,
 
-            BottleOfWine, Brandy, BraindeathRum, Gin, HalfFullWine, JugOfWine, KarmajaRum, BeerKeg, Vodka, Whisky, CupOfTea,
+            BottleOfWine, Brandy, BraindeathRum, Gin, HalfFullWine, JugOfWine, KarmajaRum, BeerKeg, Vodka, Whisky,
+            CupOfTea, PoisonChalice,
 
             FruitBlast, PineapplePunch, WizardBlizzard, ShortGreenGuy, DrunkDragon, ChocSaturday, BlurberrySpecial,
 
