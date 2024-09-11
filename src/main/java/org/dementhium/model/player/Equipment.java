@@ -392,7 +392,7 @@ public class Equipment {
 		return false;
 	}
 
-	public int getSlot(byte i) { getSlot((int) i); }
+	public int getSlot(byte i) { return getSlot((int) i); }
 
 	public int getSlot(int i) {
 		if(get(i) == null) {
