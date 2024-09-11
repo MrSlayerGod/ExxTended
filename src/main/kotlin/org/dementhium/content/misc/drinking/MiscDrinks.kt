@@ -7,6 +7,8 @@ import org.dementhium.util.ItemId
 import org.dementhium.util.random.SimpleWeightedTable
 import org.dementhium.content.misc.buildConsumable
 import org.dementhium.model.Item
+import org.dementhium.content.misc.skillEffect.builder.*
+
 import kotlin.random.Random
 
 private val BraindeathDrains = listOf(Attack, Prayer, Range, Magic, Agility, Herblore)

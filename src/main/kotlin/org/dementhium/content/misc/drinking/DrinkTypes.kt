@@ -1,8 +1,8 @@
 package org.dementhium.content.misc.drinking
 
 import org.dementhium.content.misc.*
-import org.dementhium.content.misc.ConsumableIds
 import org.dementhium.content.misc.skillEffect.*
+import org.dementhium.content.misc.skillEffect.builder.SkillEffectBuilder
 import org.dementhium.util.ItemId
 
 fun Tea(

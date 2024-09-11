@@ -2,6 +2,7 @@ package org.dementhium.content.misc.drinking
 
 import org.dementhium.content.misc.skillEffect.RestoreEnergy
 import org.dementhium.model.player.skills.SkillId.*
+import org.dementhium.content.misc.skillEffect.builder.*
 import org.dementhium.util.ItemId
 
 val SpringSqirkJuice = Ale(ItemId.SPRING_SQIRKJUICE) {

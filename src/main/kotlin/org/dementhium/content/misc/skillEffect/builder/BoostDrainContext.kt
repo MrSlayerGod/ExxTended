@@ -1,4 +1,4 @@
-package org.dementhium.content.misc.skillEffect
+package org.dementhium.content.misc.skillEffect.builder
 
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.Skills

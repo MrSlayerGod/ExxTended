@@ -1,7 +1,7 @@
 package org.dementhium.content.misc
 
 import org.dementhium.content.misc.skillEffect.SkillEffect
-import org.dementhium.content.misc.skillEffect.SkillEffectBuilder
+import org.dementhium.content.misc.skillEffect.builder.SkillEffectBuilder
 import org.dementhium.content.misc.skillEffect.buildSkillEffect
 import org.dementhium.util.builder.GenericBuilder
 import org.dementhium.util.findConstructorThatMatches

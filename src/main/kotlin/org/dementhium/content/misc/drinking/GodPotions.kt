@@ -1,8 +1,10 @@
 package org.dementhium.content.misc.drinking
 
 import org.dementhium.content.misc.skillEffect.*
+import org.dementhium.content.misc.skillEffect.builder.HealType
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId
+import org.dementhium.content.misc.skillEffect.builder.*
 
 
 val GuthixRest = Tea(

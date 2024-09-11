@@ -1,11 +1,13 @@
 package org.dementhium.content.misc.skillEffect
 
+import org.dementhium.content.misc.skillEffect.builder.BoostDrainContext
+import org.dementhium.content.misc.skillEffect.builder.HealType
 import org.dementhium.model.World
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.SkillId.*
-import org.dementhium.model.player.skills.Skills
 import org.dementhium.util.math.percentOf
 import org.dementhium.util.submitTickable
+import org.dementhium.content.misc.skillEffect.builder.*
 
 fun SkillId.Restore(flat: Int = 0, percent: Int = 0) = restore(this, flat, percent)
 fun SkillId.Boost(flat: Int = 0, percent: Int = 0) = boost(this, flat, percent)
@@ -19,7 +21,6 @@ fun SkillId.DrainBy(calculateDrain: BoostDrainContext.() -> Int) = skillEffect {
 fun SkillId.Drain(flat: Int = 0, percent: Int = 0) = DrainBy {
     (percent percentOf maximumLevel) + flat
 }
-
 
 fun Collection<SkillId>.restoreAll(flat: Int = 0, percent: Int = 0) = buildSkillEffect {
     forEach { skill -> skill.restore(flat, percent) }
