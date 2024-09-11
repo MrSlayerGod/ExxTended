@@ -2,50 +2,52 @@ package org.dementhium.content.misc.skillEffect
 
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.util.builder.GenericBuilder
+import org.dementhium.util.math.percentOf
+
+sealed interface HealType {
+    data object Overheals: HealType
+    data object DoesntOverheal: HealType
+}
 
 class SkillEffectBuilder: GenericBuilder<SkillEffect>("SkillEffectBuilder") {
 
     private val skillEffects: MutableList<SkillEffect> = mutableListOf()
 
-    sealed interface HealType {
-        data object Overheals: HealType
-        data object DoesntOverheal: HealType
+
+    fun hurt(newHurt: Int, percent: Int = 0) = apply {
+        val effect = skillEffect {
+            val hurtValue = (percent percentOf maxHitpoints) + newHurt
+            hit(hurtValue)
+        }
+        addEffect(effect)
     }
 
-    var hurt: Int = 0
-    fun hurt(newHurt: Int) = apply { hurt = newHurt }
-
-    var heal: Int = 0
-    var healType: HealType = HealType.DoesntOverheal
-
-    fun heal(newHeal: Int, newType: HealType = HealType.DoesntOverheal) = apply {
-        heal = newHeal
-        healType = newType
+    fun heal(newHeal: Int, percent: Int = 0, healType: HealType = HealType.DoesntOverheal) = apply {
+        val effect = skillEffect {
+            val healValue = (percent percentOf maxHitpoints) + newHeal
+            heal(
+                healValue,
+                maxHp = maxHitpoints + if (healType is HealType.DoesntOverheal) {
+                    0
+                } else {
+                    healValue
+                }
+            )
+        }
+        addEffect(effect)
     }
 
-    fun overheal(newHeal: Int) = heal(newHeal, HealType.Overheals)
+    fun overheal(newHeal: Int, percent: Int = 0) = heal(newHeal, percent, HealType.Overheals)
 
     fun addEffect(skillEffect: SkillEffect) = apply { skillEffects.add(skillEffect) }
+
+    fun addEffect(builder: SkillEffectBuilder.() -> Unit) = addEffect(buildSkillEffect(builder))
+
     fun SkillId.boost(flat: Int = 0, percent: Int = 0) = addEffect(boost(this, flat, percent))
     fun SkillId.drain(flat: Int = 0, percent: Int = 0) = addEffect(drain(this, flat, percent))
     fun SkillId.restore(flat: Int = 0, percent: Int = 0) = addEffect(restore(this, flat, percent))
 
     override fun build(): SkillEffect {
-        if (heal != 0) {
-            skillEffects += SkillEffect {
-                heal(
-                    heal,
-                    maxHp = if (healType is HealType.Overheals) {
-                        heal + maxHitpoints
-                    } else {
-                        heal
-                    }
-                )
-            }
-        }
-        if (hurt != 0) {
-            skillEffects += SkillEffect { hit(hurt) }
-        }
         val toReturn = SkillEffect.from(skillEffects)
         skillEffects.clear()
         return toReturn

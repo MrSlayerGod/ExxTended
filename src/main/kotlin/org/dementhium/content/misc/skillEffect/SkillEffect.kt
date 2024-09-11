@@ -3,6 +3,7 @@ package org.dementhium.content.misc.skillEffect
 import org.dementhium.model.player.skills.Skills
 
 fun interface SkillEffect {
+
     fun Skills.applyEffect()
 
     fun flatten(): SkillEffect = this
