@@ -9,6 +9,7 @@ import org.dementhium.util.direction
 import org.dementhium.util.submitTickable
 import kotlin.enums.EnumEntries
 import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Goal is API compatible with old skills
@@ -47,13 +48,16 @@ class Skills(val player: Player) {
 
     fun getXp(skillId: SkillId): Double = skillId.experience
 
-    fun hit(hitValue: Int) {
-        this.hitPoints = (this.hitPoints - hitValue).coerceAtLeast(0)
+    fun hit(hitValue: Int, floor: Int) {
+        val trueFloor = min(maxHitpoints, floor)
+        this.hitPoints = (this.hitPoints - hitValue).coerceAtLeast(trueFloor)
         if (this.hitPoints == 0) {
             sendDead()
         }
         sendHitpoints()
     }
+
+    fun hit(hitValue: Int) = hit(hitValue, 0)
 
     @JvmOverloads
     fun heal(healValue: Int, maxHp: Int = maxHitpoints) {
