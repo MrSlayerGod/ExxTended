@@ -1,8 +1,6 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.Boost
-import org.dementhium.content.misc.ConsumableIds
-import org.dementhium.model.player.skills.SkillId
+import org.dementhium.content.misc.skillEffect.Boost
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId
 

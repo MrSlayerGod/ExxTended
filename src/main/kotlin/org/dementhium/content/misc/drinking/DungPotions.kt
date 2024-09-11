@@ -1,7 +1,6 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.*
-import org.dementhium.content.misc.skillEffect.plus
+import org.dementhium.content.misc.skillEffect.*
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId

@@ -1,6 +1,8 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.*
+import org.dementhium.content.misc.skillEffect.Boost
+import org.dementhium.content.misc.skillEffect.Drain
+import org.dementhium.content.misc.skillEffect.HealBy
 import org.dementhium.content.misc.skillEffect.plus
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId

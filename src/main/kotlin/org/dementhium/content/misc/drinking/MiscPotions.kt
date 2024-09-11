@@ -1,7 +1,9 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.*
-import org.dementhium.model.player.skills.SkillId
+import org.dementhium.content.misc.skillEffect.Boost
+import org.dementhium.content.misc.skillEffect.DragonfireResist
+import org.dementhium.content.misc.skillEffect.RecoverSpecial
+import org.dementhium.content.misc.skillEffect.WeakenDisease
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId
 import org.dementhium.util.minutesToTicks

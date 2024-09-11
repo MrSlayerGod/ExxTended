@@ -1,7 +1,7 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.RestoreEnergy
-import org.dementhium.content.misc.restoreAll
+import org.dementhium.content.misc.skillEffect.RestoreEnergy
+import org.dementhium.content.misc.skillEffect.restoreAll
 import org.dementhium.model.player.skills.SkillId
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId

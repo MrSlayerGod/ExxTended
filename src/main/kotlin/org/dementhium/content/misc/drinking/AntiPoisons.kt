@@ -1,7 +1,7 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.CureDisease
-import org.dementhium.content.misc.CurePoison
+import org.dementhium.content.misc.skillEffect.CureDisease
+import org.dementhium.content.misc.skillEffect.CurePoison
 import org.dementhium.content.misc.skillEffect.plus
 import org.dementhium.util.ItemId
 import org.dementhium.util.minutesToTicks

@@ -1,7 +1,9 @@
 package org.dementhium.content.misc.drinking
 
-import org.dementhium.content.misc.*
-import org.dementhium.model.player.skills.SkillId
+import org.dementhium.content.misc.skillEffect.Restore
+import org.dementhium.content.misc.skillEffect.RestoreEnergy
+import org.dementhium.content.misc.skillEffect.SuperRestore
+import org.dementhium.content.misc.skillEffect.Tier2Stat
 import org.dementhium.model.player.skills.SkillId.*
 import org.dementhium.util.ItemId
 
