@@ -1,10 +1,7 @@
 package org.dementhium.net.packethandlers;
 
 import org.dementhium.content.interfaces.EmoteTab;
-import org.dementhium.content.misc.Drinking;
-import org.dementhium.content.misc.Eating;
-import org.dementhium.content.misc.drinking.Drink;
-import org.dementhium.content.misc.Eating.Food;
+import org.dementhium.content.misc.Consumable;
 import org.dementhium.content.skills.magic.MagicHandler;
 import org.dementhium.model.GroundItemManager;
 import org.dementhium.model.Item;
@@ -606,14 +603,9 @@ public class ActionButtonHandler extends PacketHandler {
 						}
 					});
 				}
-				Food food = Food.forId(itemId);
-				if (food != null) {
-					Eating.eat(p, food, slot);
-					return;
-				}
-				Drink drink = Drinking.forId(itemId);
-				if (drink != null) {
-					Drinking.drink(p, drink, slot);
+				Consumable consumable = Consumable.forId(itemId);
+				if (consumable != null) {
+					Consumable.consume(p, consumable, slot);
 					return;
 				}
 				try {

@@ -30,11 +30,7 @@ val DwarvenRockCake = buildConsumable<Food> {
     consumableId(ItemId.DWARVEN_ROCK_CAKE)
     depletionType(DepletionType.Keep(Item(ItemId.DWARVEN_ROCK_CAKE)))
     addEffect {
-        addEffect {
-            if (hitPoints >= 3) {
-                hurt(2)
-            }
-        }
+        hurt(30)
     }
 }
 
