@@ -35,7 +35,16 @@ class Food(
             PlainPizza, MeatPizza, AnchovyPizza, PineapplePizza,
 
             Cheese, Bread, Doughnut, UgthankiKebab, Kebab, PurpleSweetsS, PurpleSweets, BlueSweets, DeepBlueSweets,
-            WhiteSweets, RedSweets, GreenSweets, PinkSweets
+            WhiteSweets, RedSweets, GreenSweets, PinkSweets,
+
+            BakedCavePotato, GisselPotato, EdicapPotato, HeimCrab, HeimCrabPotato, HeimGisselPotato, HeimEdicapPotato,
+            Redeye, RedeyePotato, RedeyeGisselPotato, RedeyeEdicapPotato, DuskEel, DuskEelPotato, DuskEelGisselPotato,
+            DuskEelEdicapPotato, GiantFlatfish, FlatfishPotato, FlatfishGisselPotato, FlatfishEdicapPotato,
+            ShortfinEel, ShortfinPotato, ShortfinGisselPotato, ShortfinEdicapPotato, Websnipper, SnipperPotato,
+            SnipperGisselPotato, SnipperEdicapPotato, Bouldabass, BouldabassPotato, BouldabassEdicapPotato,
+            BouldabassGisselPotato, SalveEel, SalveEelPotato, SalveEelGisselPotato, SalveEelEdicapPotato, BlueCrab,
+            BlueCrabPotato, BlueCrabGisselPotato, BlueCrabEdicapPotato, CaveMoray, CaveMorayPotato,
+            CaveMorayGisselPotato, CaveMorayEdicapPotato
         )
     }
 }

@@ -95,7 +95,6 @@ abstract class Consumable(
 
             player.animate(consumeAnim)
 
-            val potionName = slotItem.definition.name.lowercase()
             with(consumable.skillEffect) {
                 player.skills.applyEffect()
             }
