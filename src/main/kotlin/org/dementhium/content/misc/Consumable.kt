@@ -70,11 +70,7 @@ abstract class Consumable(
             if (attr == true) return
 
             val slotItem = player.inventory[clickedSlot]
-<<<<<<< HEAD
             
-=======
-            println("hmm: ${slotItem.copy(newAmount = slotItem.amount - 1)} (${slotItem.amount})")
->>>>>>> b8dba9713ecab7d11be62ad7a3c8a049daaf5535
             val nextItem: Item = when(val nextStage = consumable.consumableIds.nextStageFromId(slotItem.id)) {
                 is ConsumableStatus.IdNotContained -> return
                 is ConsumableStatus.ConsumableDepleted -> when (val depletionType = nextStage.depletionType) {
@@ -87,8 +83,6 @@ abstract class Consumable(
                 }
                 is ConsumableStatus.ConsumableNotDepleted -> nextStage.item
             }
-
-            println("slotItem: $slotItem, nextItem: $nextItem")
 
             player.setAttribute(attribute, true)
 
