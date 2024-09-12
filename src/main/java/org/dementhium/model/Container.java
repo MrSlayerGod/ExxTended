@@ -41,6 +41,7 @@ public class Container {
 
 	private Item checkNull(Item item) {
 		if (item == null) return null;
+		if (item.getAmount() < 1) return null;
 		return item.getId() < 0 ? null : item;
 	}
 

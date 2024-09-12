@@ -7,6 +7,7 @@ import org.dementhium.model.Item
 import org.dementhium.model.World
 import org.dementhium.model.player.Player
 import org.dementhium.util.equalsItem
+import org.dementhium.util.item.copy
 import org.dementhium.util.submitTickable
 import kotlin.reflect.KClass
 
@@ -69,12 +70,21 @@ abstract class Consumable(
             if (attr == true) return
 
             val slotItem = player.inventory[clickedSlot]
-
+            println("hmm: ${slotItem.copy(newAmount = slotItem.amount - 1)} (${slotItem.amount})")
             val nextItem: Item = when(val nextStage = consumable.consumableIds.nextStageFromId(slotItem.id)) {
                 is ConsumableStatus.IdNotContained -> return
-                is ConsumableStatus.ConsumableDepleted -> nextStage.depletionType.item
+                is ConsumableStatus.ConsumableDepleted -> when (val depletionType = nextStage.depletionType) {
+                    is DepletionType.Remove -> {
+                        val new = slotItem.copy()
+                        new.amount -= 1
+                        new
+                    }
+                    else -> depletionType.item
+                }
                 is ConsumableStatus.ConsumableNotDepleted -> nextStage.item
             }
+
+            println("slotItem: $slotItem, nextItem: $nextItem")
 
             player.setAttribute(attribute, true)
 
