@@ -4,7 +4,9 @@ import org.dementhium.model.Item
 
 sealed interface DepletionType {
     val item: Item
-    @JvmInline value class Keep(override val item: Item): DepletionType
+    data object Keep: DepletionType {
+        override val item: Item = Item(-1)
+    }
     data object Remove: DepletionType {
         override val item: Item = Item(-1)
     }

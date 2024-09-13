@@ -74,12 +74,13 @@ abstract class Consumable(
             val nextItem: Item = when(val nextStage = consumable.consumableIds.nextStageFromId(slotItem.id)) {
                 is ConsumableStatus.IdNotContained -> return
                 is ConsumableStatus.ConsumableDepleted -> when (val depletionType = nextStage.depletionType) {
+                    is DepletionType.Empty -> depletionType.item
                     is DepletionType.Remove -> {
                         val new = slotItem.copy()
                         new.amount -= 1
                         new
                     }
-                    else -> depletionType.item
+                    is DepletionType.Keep -> slotItem.copy()
                 }
                 is ConsumableStatus.ConsumableNotDepleted -> nextStage.item
             }
@@ -98,6 +99,7 @@ abstract class Consumable(
             with(consumable.skillEffect) {
                 player.skills.applyEffect()
             }
+
             if (!slotItem.equalsItem(nextItem)) {
                 player.inventory[clickedSlot] = nextItem
             }
