@@ -7,11 +7,13 @@ val koinVersion by extra("3.0.1")
 val mysqlVersion by extra("5.0.5")
 val xpp3Version by extra("1.1.4c")
 val xStreamVersion by extra("1.4.1")
+val kamlVersion by extra("0.55.0")
 
 plugins {
     java
     application
     kotlin("jvm") version "2.0.20"
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 group = "nb"
@@ -23,8 +25,8 @@ repositories {
 }
 
 fun DependencyHandlerScope.localImpl(fileName: String, path: String = "lib/") = implementation(files("$path$fileName"))
-
 fun DependencyHandlerScope.localJar(fileName: String, path: String = "lib/") = localImpl("$fileName.jar", path)
+fun kotlinx(implName: String, version: String) = "org.jetbrains.kotlinx:$implName:$version"
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -38,6 +40,8 @@ dependencies {
     implementation("com.thoughtworks.xstream:xstream:$xStreamVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    implementation("com.charleskorn.kaml:kaml:$kamlVersion")
+    implementation(kotlinx("kotlinx-serialization-json", "1.5.1"))
     localJar("upnp")
 }
 
