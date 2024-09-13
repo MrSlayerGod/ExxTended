@@ -1,4 +1,4 @@
-package nb.util.serdes
+package serdes
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.encoding.Decoder

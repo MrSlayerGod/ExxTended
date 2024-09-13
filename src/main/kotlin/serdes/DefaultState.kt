@@ -1,4 +1,4 @@
-package nb.util.serdes
+package serdes
 
 sealed interface DefaultState {
     object NotSet: DefaultState

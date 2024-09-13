@@ -1,8 +1,7 @@
-package nb.util.serdes.string
+package serdes
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer
-import nb.util.serdes.TransformingSerializer
 
 object LowercasingDeserializer: KSerializer<String> by TransformingSerializer(
     bySerializer = String.serializer(),
