@@ -50,7 +50,7 @@ val KarmajaRum = SingleDose(ItemId.KARAMJAN_RUM, emptyId = ItemId.EMPTY_WINE_BOT
 
 val BeerKeg = buildConsumable<Drink> {
     consumableId(ItemId.KEG_OF_BEER)
-    depletionType(DepletionType.Keep(Item(ItemId.KEG_OF_BEER)))
+    depletionType(DepletionType.Keep)
     addEffect {
         heal(150)
         Strength.boost(flat = 2, percent = 10)

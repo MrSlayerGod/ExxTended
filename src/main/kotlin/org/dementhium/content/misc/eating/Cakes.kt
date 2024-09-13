@@ -28,7 +28,7 @@ val MintCake = Single(ItemId.MINT_CAKE) {
 
 val DwarvenRockCake = buildConsumable<Food> {
     consumableId(ItemId.DWARVEN_ROCK_CAKE)
-    depletionType(DepletionType.Keep(Item(ItemId.DWARVEN_ROCK_CAKE)))
+    depletionType(DepletionType.Keep)
     addEffect {
         hurt(30)
     }
