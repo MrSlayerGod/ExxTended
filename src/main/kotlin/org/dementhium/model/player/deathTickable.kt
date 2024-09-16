@@ -7,21 +7,15 @@ import org.dementhium.net.ActionSender
 import org.dementhium.util.tickable
 
 fun deathTickable(player: Player) = tickable(4) { with(player.skills) {
+    skills.forEach { it.resetCurrent() }
     for (i in 0 until SKILL_COUNT) {
         set(i, getLevelForXp(i))
     }
     player.giveKiller()
     ActionSender.sendChatMessage(player, 0, "Oh dear, you are dead.")
     player.teleport(3162, 3484, 0)
-    World.getWorld().submit(object : Tickable(1) {
-        override fun execute() {
-            hitPoints = maxHitpoints
-            sendHitpoints()
-            player.setSpecialAmount(1000, true)
-            player.walkingQueue.runEnergy = 100
-            this.stop()
-        }
-    })
+    hitPoints = maxHitpoints
+    hasSentDead = false
     player.headIcons.isSkulled = false
     player.teleblock.isTeleblocked = false
     player.resetCombat()
@@ -32,6 +26,13 @@ fun deathTickable(player: Player) = tickable(4) { with(player.skills) {
     )
     player.setAttribute("vengeance", false)
     player.clearEnemyHits()
-    hasSentDead = false
+    World.getWorld().submit(object : Tickable(1) {
+        override fun execute() {
+            player.setSpecialAmount(1000, true)
+            player.walkingQueue.runEnergy = 100
+            sendHitpoints()
+            this.stop()
+        }
+    })
     stop()
 }}

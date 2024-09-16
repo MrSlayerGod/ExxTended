@@ -44,6 +44,8 @@ class Skills(val player: Player) {
 
     private fun SkillId.sendSkillLevel() { ActionSender.sendSkillLevel(player, id) }
 
+    fun SkillId.resetCurrent() { currentLevel = maximumLevel }
+
     fun getSkill(skillId: SkillId): Skill = skillsMap[skillId]
 
     fun getXp(skillId: SkillId): Double = skillId.experience
@@ -187,6 +189,7 @@ class Skills(val player: Player) {
         world.submitTickable(1) {
             player.animate(9055)
             world.submit(deathTickable(player))
+            stop()
         }
     }
 
