@@ -4,7 +4,7 @@ import org.dementhium.model.World
 import org.dementhium.model.player.Player
 import org.dementhium.model.player.deathTickable
 import org.dementhium.net.ActionSender
-import org.dementhium.util.TrueMap
+import org.dementhium.util.map.TrueMap
 import org.dementhium.util.direction
 import org.dementhium.util.submitTickable
 import kotlin.enums.EnumEntries

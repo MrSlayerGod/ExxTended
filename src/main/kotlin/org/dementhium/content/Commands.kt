@@ -24,6 +24,7 @@ import java.util.*
  * @author 'Mystic Flow
  */
 object Commands {
+    @JvmStatic
     fun handle(player: Player, command: String) {
         try {
             if (player.rights >= 0) {
@@ -301,44 +302,17 @@ object Commands {
         }
         if (command[0].equals("item", ignoreCase = true)) {
             val item = command[1].toInt()
-            if (player.refreshAttackOptions() || player.location.atGe() && !player.location.atGeLobby()) {
-                player.sendMessage("You can't spawn in this area.")
+            if (player.rights > 1) {
+                if (command.size == 3) {
+                    player.inventory.addItem(item, command[2].toInt())
+                } else {
+                    player.inventory.addItem(item, 1)
+                }
+                player.inventory.refresh()
                 return
             }
-            if (item == 995 && player.rights < 2 || item == 8890 && player.rights < 2) {
-                player.sendMessage("You can't spawn coins!")
-                return
-            }
-            if (item == 6529 && player.rights < 2) {
-                player.sendMessage("You can't spawn tokens!")
-                return
-            }
-            for (i in ValidItems.DropItems.indices) {
-                if (item == ValidItems.DropItems[i] && player.rights < 2 || Item(item).definition.isNoted && item - 1 == ValidItems.DropItems[i] && player.rights < 2) {
-                    player.sendMessage("You cannot spawn an item obtained from PvP.")
-                    return
-                }
-            }
-            for (i in ValidItems.NonSpawn.indices) {
-                if (item == ValidItems.NonSpawn[i] && player.rights < 2 || Item(item).definition.isNoted && item - 1 == ValidItems.NonSpawn[i] && player.rights < 2) {
-                    player.sendMessage("That item is unspawnable.")
-                    return
-                }
-            }
-            for (itemString in ValidItems.StringItems) {
-                if (Item(item).definition.name.lowercase(Locale.getDefault())
-                        .contains(itemString.lowercase(Locale.getDefault())) && player.rights < 2
-                ) {
-                    player.sendMessage("That item is unspawnable.")
-                    return
-                }
-            }
-            if (command.size == 3) {
-                player.inventory.addItem(item, command[2].toInt())
-            } else {
-                player.inventory.addItem(item, 1)
-            }
-            player.inventory.refresh()
+            player.sendMessage("You cannot spawn an item.")
+            return
         }
         if (command[0].equals("curses", ignoreCase = true)) {
             if (player.refreshAttackOptions() || player.location.atGe() && !player.location.atGeLobby()) {

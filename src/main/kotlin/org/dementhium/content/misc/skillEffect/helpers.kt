@@ -30,6 +30,18 @@ fun Collection<SkillId>.boostAll(flat: Int = 0, percent: Int = 0) = buildSkillEf
     forEach { skill -> skill.boost(flat, percent) }
 }
 
+fun Collection<SkillId>.drainAll(flat: Int = 0, percent: Int = 0) = buildSkillEffect {
+    forEach { skill -> skill.drain(flat, percent) }
+}
+
+fun healBy(flat: Int, percent: Int) = buildSkillEffect {
+    heal(flat, percent)
+}
+
+fun hurtBy(flat: Int, percent: Int) = buildSkillEffect {
+    hurt(flat, percent)
+}
+
 fun HealBy(amount: Int, overheal: Int = 0) = buildSkillEffect {
     heal(amount, healType = if (overheal == 0) HealType.DoesntOverheal else HealType.Overheals)
 }

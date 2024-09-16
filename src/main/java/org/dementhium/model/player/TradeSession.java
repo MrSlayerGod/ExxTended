@@ -95,26 +95,6 @@ public class TradeSession {
 			if(traderDidAccept) {
 				return;
 			}
-			boolean spawnable = true;
-			for (int i = 0; i < ValidItems.DropItems.length; i++) {
-				if (pl.getInventory().get(slot).getId() == ValidItems.DropItems[i] || pl.getInventory().get(slot).getDefinition().isNoted() && pl.getInventory().get(slot).getId()-1 == ValidItems.DropItems[i]) {
-					spawnable = false;
-				}
-			}
-			for (int i = 0; i < ValidItems.NonSpawn.length; i++) {
-				if (pl.getInventory().get(slot).getId() == ValidItems.NonSpawn[i] || pl.getInventory().get(slot).getDefinition().isNoted() && pl.getInventory().get(slot).getId()-1 == ValidItems.NonSpawn[i]) {
-					spawnable = false;
-				}
-			}
-			for (String itemString : ValidItems.StringItems) {
-				if(pl.getInventory().get(slot).getDefinition().getName().toLowerCase().contains(itemString.toLowerCase())) {
-					spawnable = false;
-				}
-			}
-			if(spawnable) {
-				pl.sendMessage("You can't trade this item.");
-				return;
-			}
 			Item item = new Item(pl.getInventory().getContainer().get(slot).getId(), amt);
 			if (item != null) {
 				traderDidAccept = false;
@@ -135,26 +115,6 @@ public class TradeSession {
 			}
 		} else if (pl.equals(partner)) {
 			if(partnerDidAccept) {
-				return;
-			}
-			boolean spawnable = true;
-			for (int i = 0; i < ValidItems.DropItems.length; i++) {
-				if (pl.getInventory().get(slot).getId() == ValidItems.DropItems[i] || pl.getInventory().get(slot).getDefinition().isNoted() && pl.getInventory().get(slot).getId()-1 == ValidItems.DropItems[i]) {
-					spawnable = false;
-				}
-			}
-			for (int i = 0; i < ValidItems.NonSpawn.length; i++) {
-				if (pl.getInventory().get(slot).getId() == ValidItems.NonSpawn[i] || pl.getInventory().get(slot).getDefinition().isNoted() && pl.getInventory().get(slot).getId()-1 == ValidItems.NonSpawn[i]) {
-					spawnable = false;
-				}
-			}
-			for (String itemString : ValidItems.StringItems) {
-				if(pl.getInventory().get(slot).getDefinition().getName().toLowerCase().contains(itemString.toLowerCase())) {
-					spawnable = false;
-				}
-			}
-			if(spawnable) {
-				pl.sendMessage("You can't trade this item.");
 				return;
 			}
 			Item item = new Item(pl.getInventory().getContainer().get(slot).getId(), amt);

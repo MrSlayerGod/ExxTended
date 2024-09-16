@@ -1,4 +1,4 @@
-package org.dementhium.util
+package org.dementhium.util.map
 
 import kotlin.enums.EnumEntries
 

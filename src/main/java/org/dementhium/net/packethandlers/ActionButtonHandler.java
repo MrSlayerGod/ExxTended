@@ -501,27 +501,6 @@ public class ActionButtonHandler extends PacketHandler {
 					p.sendMessage("Admins can't drop items, use 'empty' in the command console.");
 					return;
 				}
-				boolean spawnable = true;
-				for (int i = 0; i < ValidItems.DropItems.length; i++) {
-					if (p.getInventory().get(slot).getId() == ValidItems.DropItems[i] && p.getRights() < 2 || p.getInventory().get(slot).getDefinition().isNoted() && p.getInventory().get(slot).getId()-1 == ValidItems.DropItems[i] && p.getRights() < 2) {
-						spawnable = false;
-					}
-				}
-				for (int i = 0; i < ValidItems.NonSpawn.length; i++) {
-					if (p.getInventory().get(slot).getId() == ValidItems.NonSpawn[i] && p.getRights() < 2 || p.getInventory().get(slot).getDefinition().isNoted() && p.getInventory().get(slot).getId()-1 == ValidItems.NonSpawn[i] && p.getRights() < 2) {
-						spawnable = false;
-					}
-				}
-				for (String itemString : ValidItems.StringItems) {
-					if(p.getInventory().get(slot).getDefinition().getName().toLowerCase().contains(itemString.toLowerCase()) && p.getRights() < 2) {
-						spawnable = false;
-					}
-				}
-				if(spawnable) {
-					p.getInventory().getContainer().set(slot, null);
-					p.getInventory().refresh();
-					return;
-				}
 				World.getWorld().getGroundItemManager().sendDelayedGlobalGroundItem(GroundItemManager.DEFAULT_DELAY, World.getWorld().getGroundItemManager().create(p, p.getInventory().get(slot), p.getLocation()), false);
 				p.getInventory().getContainer().set(slot, null);
 				p.getInventory().refresh();
