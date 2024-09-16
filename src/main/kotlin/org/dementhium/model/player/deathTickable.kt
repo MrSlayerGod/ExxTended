@@ -13,10 +13,10 @@ fun deathTickable(player: Player) = tickable(4) { with(player.skills) {
     player.giveKiller()
     ActionSender.sendChatMessage(player, 0, "Oh dear, you are dead.")
     player.teleport(3162, 3484, 0)
-    heal(maxHitpoints)
-    ActionSender.sendConfig(player, 1240, this.hitPoints * 2)
     World.getWorld().submit(object : Tickable(1) {
         override fun execute() {
+            hitPoints = maxHitpoints
+            sendHitpoints()
             player.setSpecialAmount(1000, true)
             player.walkingQueue.runEnergy = 100
             this.stop()
@@ -30,7 +30,7 @@ fun deathTickable(player: Player) = tickable(4) { with(player.skills) {
         "vengDelay",
         System.currentTimeMillis() - (player.getAttribute("vengDelay", 0L) as Long) + 30000
     )
-    player.setAttribute("vengeance", java.lang.Boolean.FALSE)
+    player.setAttribute("vengeance", false)
     player.clearEnemyHits()
     hasSentDead = false
     stop()

@@ -40,7 +40,7 @@ class Skills(val player: Player) {
         get() = skillsMap[this].maxLevel
 
 
-    private fun sendHitpoints() { ActionSender.sendConfig(player, 1240, this.hitPoints * 2) }
+    fun sendHitpoints() { ActionSender.sendConfig(player, 1240, this.hitPoints * 2) }
 
     private fun SkillId.sendSkillLevel() { ActionSender.sendSkillLevel(player, id) }
 
