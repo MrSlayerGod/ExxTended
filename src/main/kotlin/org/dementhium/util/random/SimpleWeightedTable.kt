@@ -1,25 +1,28 @@
 package org.dementhium.util.random
 
-import org.dementhium.util.map.reverse
-import java.util.*
-
-private fun <K: Comparable<K>, V> List<Pair<K, V>>.combiSort(): SortedMap<K, List<V>> {
-    val combi = mutableMapOf<K, MutableList<V>>()
-    forEach { (weight, item) ->
-        combi.getOrPut(weight) { mutableListOf() }.add(item)
+fun <T> List<Pair<Int, List<T>>>.weightedTable(): SimpleWeightedTable<T> {
+    val weightedItemList = mutableListOf<Pair<Int, T>>()
+    forEach { (weight, items) ->
+        items.forEach { item ->
+            weightedItemList.add(weight to item)
+        }
     }
-    return combi.toSortedMap()
+    return SimpleWeightedTable(weightedItemList)
 }
 
 class SimpleWeightedTable<T>(items: List<Pair<Int, T>>) {
-    constructor(vararg items: Pair<Int, T>): this(items.asList())
-    constructor(items: Map<T, Int>): this(items.reverse().map(Map.Entry<Int, T>::toPair))
 
-    private val combiSorted = items.combiSort()
+    constructor(vararg items: Pair<Int, T>): this(items.asList())
+
+    private val combiSorted = buildMap<Int, MutableList<T>> {
+        items.forEach { (weight, item) ->
+            getOrPut(weight) { mutableListOf() }.add(item)
+        }
+    }.toSortedMap()
     private val totalWeight = combiSorted.keys.sum()
     private val weightRange = 1 .. totalWeight
 
-    private fun List<T>.pickItem() = if (size > 1) random() else first()
+    private fun List<T>.pickItem() = random()
 
     fun weightOf(item: T): Int {
         combiSorted.forEach { (key, value) ->
